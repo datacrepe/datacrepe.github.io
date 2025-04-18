@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智慧銷售數據系統 - 一頁式網站 (Updated)</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* Import Fonts (Example - replace with actual font source if needed) */
+    /* @import url('path/to/louis-george-cafe.css'); */
+    /* @import url('path/to/yuan-ti-fan.css'); */
+
+    /* CSS Variables for Theme Colors */
+    :root {
+      /* Original Theme Colors (Keeping for reference or specific elements) */
+      --primary-orig: #F4A259;
+      --primary-dark-orig: #e58c3c;
+      --secondary-orig: #5B8C85;
+      --accent-orig: #F25C5C;
+      --light-orig: #FFFCF5;
+      --dark-orig: #4A4238; /* Keep for potential contrast */
+
+      /* New Colors based on Request */
+      --hero-bg: #EDA55F; /* Darker Orange */
+      --hero-button-bg: #FCE9C3; /* Lighter Orange */
+      --text-brown: #968777; /* Brown Text Color */
+      --nav-bg: #FCE9C3; /* Lighter Orange for Nav */
+
+      /* General Colors */
+      --white: #FFFFFF;
+      --light-section-bg: #FFFCF5;
+      --border-light: #eee0c6;
+    }
+
+    /* Global Reset and Box Sizing */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: var(--text-brown); /* Default text color to brown */
+      background-color: var(--white);
+    }
+
+    /* Heading Styles */
+    h1, h2, h3, h4, h5, h6 {
+      margin: 1rem 0;
+      line-height: 1.3;
+      color: var(--text-brown); /* Headings also brown */
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: normal;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: normal;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: normal;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Paragraph Styling */
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-brown);
+    }
+
+    /* Centered Text Helper */
+    .text-center {
+        text-align: center;
+    }
+
+    /* Container for Centering Content */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- Navigation Bar Styling --- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(252, 233, 195, 0.95);
+      padding: 0 1rem; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(150, 135, 119, 0.2);
+    }
+
+    /* Logo Styling (Image) */
+    .logo img {
+      display: block; /* Remove extra space below image */
+      height: 40px; /* Adjust height as needed */
+      width: auto; /* Maintain aspect ratio */
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 1rem;
+    }
+
+    .nav-links a:not(.btn) {
+      text-decoration: none;
+      color: var(--text-brown);
+      font-weight: 500;
+      font-family: '圓體-繁', sans-serif;
+      transition: color 0.3s;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a:not(.btn):hover {
+      color: var(--hero-bg);
+    }
+
+    /* Nav Button Styles: dark orange bg, white text. Hover: light orange bg, dark orange text */
+    .btn-nav {
+        padding: 0.2rem 1rem;
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+        box-shadow: none;
+        font-weight: normal;
+        border-radius: 6px; /* Slightly less rounded */
+        background-color: var(--hero-bg);
+        border: 1px solid var(--hero-bg);
+        color: var(--white);
+    }    
+
+    .btn-nav:hover {
+        background-color: var(--hero-button-bg); /* Light orange bg */
+        border-color: var(--hero-button-bg);
+        color: var(--hero-bg); /* Dark orange text */
+        box-shadow: none;
+        transform: none;
+    }
+
+
+    .mobile-menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-brown);
+    }
+
+    /* General Section Padding */
+    section {
+      padding: 6rem 2rem;
+    }
+    footer {
+        padding: 4rem 2rem;
+    }
+
+    /* --- Hero Section Styling --- */
+    .hero {
+      background-color: var(--hero-bg);
+      color: var(--white); /* White text */
+      text-align: center;
+      padding: 10rem 2rem 8rem;
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero .container {
+        display: block;
+        max-width: 800px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero h1 {
+      font-family: '圓體-繁', sans-serif;
+      font-size: 2.8rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+      color: var(--white); /* White text */
+    }
+
+    .hero h2.subtitle {
+      font-family: 'Louis George Cafe', sans-serif;
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--white); /* White text */
+      letter-spacing: 0.5px;
+    }
+
+    .hero p.description {
+      font-family: '圓體-繁', sans-serif;
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin: 0 auto 2.5rem auto;
+      max-width: 700px;
+      color: var(--white); /* White text */
+      line-height: 1.7;
+    }
+
+     .hero-buttons {
+        margin-top: 1rem;
+     }
+
+    /* --- General Button Styling --- */
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+      background-color: EA9A4A;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      font-family: '圓體-繁', sans-serif;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Specific Hero Button Style */
+    .btn-hero {
+        background-color: var(--hero-button-bg);
+        color: var(--hero-bg); /* Dark Orange text */
+        padding: 1rem 3rem;
+        font-size: 1.1rem;
+        font-weight: normal;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(150, 135, 119, 0.2);
+        border: none;
+    }
+
+    .btn-hero:hover {
+        background-color: #f8e0b1;
+        box-shadow: 0 6px 15px rgba(150, 135, 119, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Primary Button Style (Used elsewhere) */
+    .btn-primary {
+      background-color: var(--hero-bg);
+      color: white;
+      border-color: var(--hero-bg);
+    }
+
+    .btn-primary:hover {
+      background-color: #d67c2a;
+      border-color: #d67c2a;
+    }
+
+    /* Secondary Button Style (Used elsewhere) */
+    .btn-secondary {
+       background-color: transparent;
+       border: 1px solid var(--hero-bg);
+       color: var(--hero-bg);
+       box-shadow: none;
+    }
+    .btn-secondary:hover {
+        background-color: rgba(237, 165, 95, 0.1);
+        color: var(--hero-bg);
+    }
+
+    /* --- Section Title Styling --- */
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding-bottom: 2.6rem; /* Increased padding (approx 1.6rem + original 1rem) */
+      position: relative; /* Needed for underline positioning */
+    }
+
+    .section-title h2 {
+      display: inline-block;
+      position: relative;
+      padding-bottom: 30px;
+      font-family: '圓體-繁', sans-serif;
+      font-weight: normal;
+      margin-bottom: 0; /* Remove default margin */
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      /* Position underline relative to the section-title padding */
+      bottom: 1rem; /* Adjust based on padding-bottom */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background-color: var(--hero-bg);
+      border-radius: 2px;
+    }
+
+    /* --- "For Whom" Section Styling --- */
+    #for-whom {
+      background-color: var(--light-section-bg);
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid var(--border-light);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem auto;
+    }
+    .card-icon img {
+        max-width: 100%;
+        height: auto;
+    }
+    .card h3 {
+        font-family: '圓體-繁', sans-serif;
+        font-weight: normal;
+    }
+
+    /* --- Feature Section Styling --- */
+    #features {
+        background-color: var(--white);
+    }
+
+    .feature-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 5rem;
+    }
+    .feature-block:last-child {
+        margin-bottom: 0;
+    }
+    .feature-block:nth-child(even) .feature-image {
+        order: 1;
+    }
+
+    .feature-image {
+        flex: 1;
+        max-width: 500px;
+        text-align: center;
+    }
+    .feature-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0px;
+    }
+
+    .feature-content {
+        flex: 1;
+        max-width: 500px;
+    }
+    .feature-content h3 {
+        font-size: 1.8rem;
+        color: var(--hero-bg);
+        margin-bottom: 1rem;
+        font-family: '圓體-繁', sans-serif;
+        font-weight: normal;
+    }
+    .feature-content ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 1.5rem;
+    }
+    .feature-content ul li {
+        margin-bottom: 0.8rem;
+        padding-left: 2rem;
+        position: relative;
+        color: var(--text-brown);
+    }
+    .feature-content ul li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--hero-bg); /* Dark Orange ticks */
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    .feature-button-container {
+        margin-top: 4rem;
+        text-align: center;
+    }
+
+    /* --- Testimonials Section (Show 3 Slides) --- */
+    #testimonials {
+        background-color: var(--light-section-bg);
+        padding-bottom: 8rem;
+    }
+
+    .testimonial-outer-container {
+        max-width: 1100px;
+        margin: 3rem auto 0;
+        position: relative;
+    }
+
+    .testimonial-carousel-container {
+        /* max-width: 900px; */ /* Adjust width to fit 3 cards + gap */
+        width: 100%; /* Take full width of outer container */
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden; /* Hide parts of cards outside */
+        /* Remove shadow/border from container, apply to cards */
+    }
+
+    .testimonial-slides-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        gap: 2rem; /* Add gap between slides */
+        /* Remove width calculation, flex handles it */
+    }
+
+    .testimonial-card {
+        /* Calculate width for 3 slides + gap */
+        max-width: calc((100% - 4rem) / 3); /* (100% - 2 * gap) / 3 */
+        flex-shrink: 0; /* Prevent shrinking */
+        box-sizing: border-box;
+        background-color: var(--white);
+        border-radius: 16px;
+        padding: 2.5rem 2rem; /* Adjust padding */
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08); /* Add shadow to cards */
+        border: 1px solid #f0f0f0; /* Add border to cards */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+     .testimonial-card h3 {
+        font-size: 1.2rem; /* Adjust size */
+        margin-bottom: 1rem;
+        color: var(--dark-orig);
+    }
+    .testimonial-card .card-icon { /* Reuse icon style */
+        width: 120px; /* Adjust size */
+        height: 160px;
+        margin-bottom: 1rem;
+    }
+    .testimonial-quote {
+        font-style: normal;
+        color: var(--text-brown);
+        margin-bottom: 1.5rem; /* Adjust spacing */
+        flex-grow: 1; /* Allow quote to take space */
+        font-size: 0.95rem; /* Adjust size */
+        line-height: 1.6;
+        max-width: 100%;
+    }
+    .testimonial-author {
+        font-weight: normal;
+        color: var(--text-brown);
+        margin-top: auto; /* Push author down */
+        font-size: 0.9rem;
+    }
+
+    /* Carousel Navigation Arrows */
+    .testimonial-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        left: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        pointer-events: none;
+        z-index: 10;
+    }
+    .testimonial-nav button {
+        background: var(--white);
+        border: 1px solid var(--border-light);
+        color: var(--hero-bg);
+        padding: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        line-height: 50px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        pointer-events: auto;
+    }
+    .testimonial-nav button.prev-btn {
+        margin-left: -25px;
+    }
+    .testimonial-nav button.next-btn {
+        margin-right: -25px;
+    }
+    .testimonial-nav button:hover {
+        background-color: var(--hero-bg);
+        color: var(--white);
+        border-color: var(--hero-bg);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    /* --- End Testimonials Section --- */
+
+
+    /* --- Pricing Section Styling (Screenshot Match) --- */
+    #pricing {
+      background-color: var(--white);
+      position: relative;
+    }
+
+    .pricing-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+      align-items: stretch;
+      position: relative;
+    }
+
+    .pricing-plan {
+      background-color: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      position: relative; /* Needed for badge positioning */
+    }
+
+    .pricing-plan:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Badge for popular plan - Updated Style */
+    .popular-plan {
+        border: 2px solid var(--hero-bg);
+        padding-top: 3.5rem; /* Add padding to make space for badge */
+    }
+    .popular-plan::before {
+        content: '熱門推薦';
+        position: absolute;
+        top: 0; /* Position at the very top */
+        left: 0;
+        width: 100%; /* Full width */
+        background-color: var(--hero-bg);
+        color: white;
+        padding: 0.6rem 1rem; /* Adjust padding */
+        border-radius: 0; /* No rounding inside */
+        font-size: 0.9rem;
+        font-weight: normal;
+        z-index: 2;
+        font-family: '圓體-繁', sans-serif;
+        /* Clip top corners to match parent */
+        border-top-left-radius: 14px; /* Match parent radius - border width */
+        border-top-right-radius: 14px;
+        box-sizing: border-box;
+    }
+
+    .pricing-body {
+      padding: 0;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pricing-body h4 {
+        font-size: 1.4rem;
+        font-weight: normal;
+        color: var(--text-brown);
+        margin-top: 0; /* Remove top margin if header is gone */
+        margin-bottom: 0.25rem;
+    }
+    .pricing-body > p.plan-subtitle { /* Target subtitle specifically */
+        font-size: 0.85rem;
+        color: var(--hero-bg); /* Dark Orange subtitle */
+        margin-bottom: 1.5rem;
+        min-height: 2.5em;
+        margin-top: 1rem; /* Add padding above */
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0 0 0.5rem 0;
+      color: var(--text-brown);
+      font-family: 'Louis George Cafe', sans-serif;
+    }
+    .price span {
+        font-size: 1rem;
+        font-weight: normal;
+        color: var(--text-brown);
+        font-family: '圓體-繁', sans-serif;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin: 2rem 0;
+      text-align: left;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .pricing-features li {
+      padding: 0.5rem 0;
+      border-bottom: none;
+      position: relative;
+      padding-left: 1.8rem;
+      color: var(--text-brown);
+      font-size: 0.95rem;
+    }
+    .pricing-features li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--hero-bg);
+        font-weight: bold;
+    }
+
+    .pricing-footer {
+      padding: 0;
+      margin-top: auto;
+      width: 100%;
+    }
+     .pricing-footer .btn {
+        display: block;
+        width: 100%;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        font-weight: normal;
+        border-radius: 8px;
+     }
+     /* Default/Free Plan Button: Orange Outline */
+     .pricing-plan:not(.popular-plan) .pricing-footer .btn {
+         background-color: transparent;
+         border: 1px solid var(--hero-bg);
+         color: var(--hero-bg);
+     }
+      .pricing-plan:not(.popular-plan) .pricing-footer .btn:hover {
+         background-color: rgba(237, 165, 95, 0.1);
+     }
+     /* Popular Plan Button: Solid Orange */
+     .popular-plan .pricing-footer .btn {
+        background-color: var(--hero-bg);
+        border-color: var(--hero-bg);
+        color: white;
+     }
+      .popular-plan .pricing-footer .btn:hover {
+        background-color: #d67c2a;
+        border-color: #d67c2a;
+     }
+
+    .pricing-illustration {
+        position: absolute;
+        bottom: -3rem;
+        right: -3rem;
+        width: 100px;
+        display: none;
+    }
+    .pricing-illustration img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* --- FAQ Section Styling (Accordion) --- */
+    #faq {
+      background-color: var(--light-section-bg);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      background-color: var(--white);
+      overflow: hidden;
+    }
+    .faq-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .faq-question {
+      font-weight: normal;
+      margin: 0;
+      color: var(--text-brown);
+      font-size: 1.1rem;
+      font-family: '圓體-繁', sans-serif;
+      padding: 1.5rem;
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+    .faq-question:hover {
+        background-color: rgba(237, 165, 95, 0.05);
+    }
+
+    .faq-question::after {
+        content: '+';
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: var(--hero-bg);
+        transition: transform 0.3s ease-out;
+    }
+    .faq-item.active .faq-question::after {
+        content: '−';
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+
+    .faq-answer {
+      color: var(--text-brown);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+      padding: 0 1.5rem;
+      border-top: none;
+    }
+    .faq-item.active .faq-answer {
+        max-height: 300px;
+        padding: 1.5rem;
+        border-top: 1px dashed var(--border-light);
+        transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+    }
+    .faq-answer {
+        border-left: none;
+        padding-left: 1.5rem;
+    }
+
+
+    /* --- Footer Styling --- */
+    footer {
+      background-color: var(--dark-orig);
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+    }
+
+    footer h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: white;
+      font-family: '圓體-繁', sans-serif;
+      font-weight: normal;
+    }
+
+    .footer-buttons {
+      margin-bottom: 3rem;
+    }
+    footer .btn-primary {
+      background-color: var(--hero-bg);
+      border-color: var(--hero-bg);
+      color: white;
+    }
+    footer .btn-primary:hover {
+      background-color: #d67c2a;
+      border-color: #d67c2a;
+    }
+    footer .btn-secondary {
+      background-color: transparent;
+      border-color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.9);
+    }
+     footer .btn-secondary:hover {
+      background-color: white;
+      color: var(--dark-orig);
+      border-color: white;
+    }
+
+    .footer-info {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+     .footer-info p {
+         color: rgba(255, 255, 255, 0.6);
+         margin-bottom: 0.5rem;
+     }
+
+    /* --- Responsive Design --- */
+    @media (min-width: 992px) { /* Adjust breakpoint for 3 testimonials */
+        .pricing-illustration { display: block; }
+    }
+    @media (min-width: 769px) {
+        .feature-block { flex-direction: row; }
+         /* Ensure nav buttons are visible */
+        .nav-links li .btn { display: inline-block; }
+    }
+
+     @media (max-width: 991px) { /* Screen sizes smaller than 3 testimonials */
+         .testimonial-card {
+             min-width: calc((100% - 2rem) / 2); /* Show 2 */
+         }
+     }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.4rem; }
+      .feature-content h3 { font-size: 1.6rem; }
+
+      nav { padding: 0 0.8rem; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--nav-bg);
+        flex-direction: column;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(150, 135, 119, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        align-items: stretch;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li { margin: 0; text-align: center; padding: 0; }
+       .nav-links a:not(.btn) {
+           padding: 0.8rem 1rem;
+           display: block;
+           color: var(--text-brown);
+       }
+       .nav-links a:not(.btn):hover { color: var(--hero-bg); }
+       .nav-links li .btn {
+           display: block;
+           margin: 0.5rem auto;
+           width: calc(100% - 2rem);
+       }
+      .mobile-menu { display: block; }
+
+      .hero { padding: 8rem 1rem 6rem; min-height: 50vh; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero h2.subtitle { font-size: 1.2rem; }
+      .hero p.description { font-size: 1rem; }
+      .btn-hero { padding: 0.8rem 2rem; font-size: 1rem; }
+
+      section, footer { padding: 4rem 1rem; }
+
+      .feature-block { gap: 2rem; margin-bottom: 4rem; }
+      .feature-block:nth-child(even) .feature-image { order: 0; }
+
+      .pricing-table { grid-template-columns: 1fr; }
+      .pricing-plan { margin-bottom: 2rem; padding-top: 2rem; } /* Adjust padding */
+      .popular-plan { padding-top: 3.5rem; } /* Ensure popular padding is enough */
+      .popular-plan::before { top: -1px; border-radius: 14px 14px 0 0;} /* Adjust badge for mobile */
+      .pricing-illustration { display: none; }
+
+      /* Testimonials on mobile (Show 1) */
+      .testimonial-outer-container { max-width: 100%; }
+      .testimonial-carousel-container { max-width: calc(100% - 2rem); }
+      .testimonial-slides-wrapper { gap: 0; } /* No gap if only 1 shown */
+      .testimonial-card {
+          min-width: 100%; /* Show 1 */
+          padding: 1.5rem;
+      }
+      .testimonial-nav { display: none; }
+      .testimonial-quote { font-size: 1rem; }
+
+      /* FAQ on mobile */
+      .faq-question { font-size: 1rem; padding: 1rem; }
+      .faq-question::after { right: 1rem; font-size: 1.3rem;}
+      .faq-answer { padding: 0 1rem; font-size: 0.95rem;}
+      .faq-item.active .faq-answer { padding: 1rem; }
+    }
+
+    /* Modal popup styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    .modal-content {
+      background-color: var(--white);
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid var(--border-light);
+      width: 90%;
+      max-width: 500px;
+      border-radius: 16px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    }
+    
+    .close {
+      color: var(--text-brown);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover {
+      color: var(--hero-bg);
+    }
+    
+    /* Form styling */
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--text-brown);
+    }
+    
+    .form-group input, 
+    .form-group textarea, 
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      color: var(--text-brown);
+    }
+    
+    .required:after {
+      content: " *";
+      color: var(--hero-bg);
+    }
+    
+    .submit-btn {
+      background-color: var(--hero-bg);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background-color: #d67c2a;
+    }
+    
+    .form-title {
+      margin-top: 0;
+      color: var(--text-brown);
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .swal-image-close-to-title {
+      margin-bottom: 0 !important;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#hero" class="logo">
+        <img src="https://img.shoplineapp.com/media/image_clips/6801ff78e0c1e3000fea1137/original.png?1744961399" alt="DataCrepe Logo" onerror="this.src='https://placehold.co/150x40/cccccc/ffffff?text=Logo'; this.alt='DataCrepe Logo Placeholder'">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#for-whom">適用對象</a></li>
+      <li><a href="#features">特色優勢</a></li>
+      <li><a href="#testimonials">使用情境</a></li>
+      <li><a href="#pricing">價格方案</a></li>
+      <li><a href="#faq">常見問題</a></li>
+      <li><a href="#demo" class="btn btn-nav">預約試用</a></li>
+      <li><a href="#login" class="btn btn-nav">登入</a></li>
+    </ul>
+    <div class="mobile-menu">☰</div>
+  </nav>
+
+  <header class="hero" id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>輕鬆掌握銷售與經營數據</h1>
+            <h2 class="subtitle">Manage your business smarter, not harder.</h2>
+            <p class="description">一款專為微商與小型商家打造的智慧銷售系統，簡單、直覺、效率翻倍。</p>
+            <div class="hero-buttons">
+                <a href="#demo" class="btn btn-hero">立即免費試用</a>
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <section id="for-whom">
+    <div class="container">
+      <div class="section-title">
+        <h2>我們的系統適合...</h2> </div>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-icon">
+            <img src="https://img.shoplineapp.com/media/image_clips/6800aaa885a909000c31b937/original.png?1744874152" alt="小型商家圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa885a909000c31b937/original.png?1744874152'; this.alt='Image load error'">
+          </div>
+          <h3>小型商家</h3>
+          <p>手作品牌、咖啡店、選物店、餐飲業者、社群電商...</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+             <img src="https://img.shoplineapp.com/media/image_clips/6800aaa82d09d3000bc88dfe/original.png?1744874152" alt="數據新手圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa82d09d3000bc88dfe/original.png?1744874152'; this.alt='Image load error'">
+          </div>
+          <h3>數據新手</h3>
+          <p>正在用 Google 表單、Excel 或筆記手動記帳</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+             <img src="https://img.shoplineapp.com/media/image_clips/6800aaa8a1e15d00114013c5/original.png?1744874152" alt="成長型企業圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa8a1e15d00114013c5/original.png?1744874152'; this.alt='Image load error'">
+          </div>
+          <h3>成長型企業</h3>
+          <p>想開始用數據經營，卻找不到門檻低又好用的工具</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+      <div class="container">
+          <div class="section-title">
+              <h2>我們的特色優勢</h2> </div>
+
+          <div class="feature-block">
+              <div class="feature-image">
+                  <img src="https://img.shoplineapp.com/media/image_clips/6802201d9f392f0010bf466d/original.png?1744969755" alt="視覺化報表截圖" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa9b2095d001011ff96/original.png?1744874152'; this.alt='Image load error'">
+              </div>
+              <div class="feature-content">
+                  <h3>親切好上手的介面設計</h3>
+                  <p>告別複雜表格！自動生成易懂的圖表，銷售趨勢、熱銷商品、顧客輪廓一目了然。</p>
+                  <ul>
+                      <li>不需要任何技術背景也能快速上手</li>
+                      <li>清楚的步驟與中文提示，像用 LINE 一樣簡單</li>
+                      <li>支援手機與平板，隨時掌握營運狀況</li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="feature-block">
+               <div class="feature-image">
+                  <img src="https://img.shoplineapp.com/media/image_clips/6802201d1649e6000daeca9c/original.png?1744969755" alt="多平台整合示意圖" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa9bb40aa000e27d795/original.png?1744874152'; this.alt='Image load error'">
+              </div>
+              <div class="feature-content">
+                  <h3>整合多方平台，資訊同步</h3>
+                  <p>無論是線上電商、社群平台或線下門市，輕鬆匯入銷售資料，告別手動整理的耗時費力。</p>
+                   <ul>
+                      <li>支援蝦皮、MOMO、店商平台 訂單匯入 (依方案)</li>
+                      <li>簡易 POS 功能，快速記錄門市銷售</li>
+                      <li>自訂匯入格式，彈性對應你的需求</li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="feature-block">
+              <div class="feature-image">
+                  <img src="https://placehold.co/500x350/eeeeee/aaaaaa?text=AI+Insight" alt="AI建議功能示意圖" onerror="this.src='https://placehold.co/500x350/cccccc/ffffff?text=Error'; this.alt='Image load error'">
+              </div>
+              <div class="feature-content">
+                  <h3>AI 數據分析與經營建議</h3>
+                  <p>不僅呈現數據，更提供行動建議。讓 AI 幫你找出潛力商品、預測銷售趨勢、提醒庫存水位。</p>
+                   <ul>
+                      <li>即時生成每日、每週、每月報表與圖表</li>
+                      <li>自動偵測銷售異常，主動提醒</li>
+                      <li>提供商品建議、促銷時機與顧客回購分析</li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="feature-button-container">
+              <a href="#demo" class="btn btn-primary">立即免費試用</a>
+          </div>
+
+      </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>DataCrepe的使用情境</h2> </div>
+      <div class="testimonial-outer-container">
+          <div class="testimonial-nav">
+             <button class="prev-btn" aria-label="Previous Testimonial">❮</button>
+             <button class="next-btn" aria-label="Next Testimonial">❯</button>
+          </div>
+          <div class="testimonial-carousel-container">
+              <div class="testimonial-slides-wrapper">
+                  <div class="testimonial-card">
+                     <div class="card-icon"> <img src="https://img.shoplineapp.com/media/image_clips/6800aaa987cf20001077aa11/original.png?1744874152" alt="咖啡店圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa987cf20001077aa11/original.png?1744874152'; this.alt='Image load error'">
+                     </div>
+                    <h3>咖啡店銷售分析</h3>
+                    <p class="testimonial-quote">咖啡店利用系統分析每週最佳促銷時段，調整人力配置與庫存管理</p>
+                  </div>
+                  <div class="testimonial-card">
+                     <div class="card-icon">
+                         <img src="https://img.shoplineapp.com/media/image_clips/6800aaa80d91c1000d0b6e31/original.png?1744874152" alt="小吃店圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa80d91c1000d0b6e31/original.png?1744874152'; this.alt='Image load error'">
+                     </div>
+                    <h3>小吃店經營分析</h3>
+                    <p class="testimonial-quote">小吃店老闆每日用手機看當日銷售報表，掌握最佳銷售時段與熱門餐點</p>
+
+                  </div>
+                  <div class="testimonial-card">
+                     <div class="card-icon">
+                         <img src="https://img.shoplineapp.com/media/image_clips/6800aaa96323a80011ff0a1d/original.png?1744874152" alt="美甲師圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa96323a80011ff0a1d/original.png?174487415'; this.alt='Image load error'">
+                     </div>
+                    <h3>美甲師客戶管理</h3>
+                    <p class="testimonial-quote">美甲師記錄每位顧客消費偏好與週期，掌握回購機會並提升客戶忠誠度</p>
+                  </div>
+                  <div class="testimonial-card">
+                     <div class="card-icon">
+                         <img src="https://img.shoplineapp.com/media/image_clips/6800aaa99a15ad000b7fd6c7/original.png?1744874152" alt="手作品牌圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa99a15ad000b7fd6c7/original.png?1744874152'; this.alt='Image load error'">
+                     </div>
+                    <h3>手作品牌庫存優化</h3>
+                    <p class="testimonial-quote">手作品牌老闆用 AI 建議調整定價與熱銷商品排序，優化產品線與利潤</p>
+                  </div>
+              </div> </div> </div>
+
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>價格方案</h2> </div>
+      <div class="pricing-table">
+        <div class="pricing-plan">
+          <div class="pricing-body">
+            <h4>免費版</h4>
+            <p class="plan-subtitle">新手試用，輕鬆分析營運狀況</p>
+            <div class="price">NT$0<span>/月</span></div>
+            <ul class="pricing-features">
+              <li>銷售紀錄整合</li>
+              <li>數據分析報表</li>
+              <li>每日報表</li>
+              <li>簡易 POS 系統</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="#demo" class="btn btn-secondary">免費試用</a>
+          </div>
+        </div>
+        <div class="pricing-plan popular-plan">
+          <div class="pricing-body">
+            <h4>基本版+</h4>
+            <p class="plan-subtitle">線上+線下，業績成長最佳選擇</p>
+            <div class="price">NT$299<span>/月</span></div>
+            <ul class="pricing-features">
+              <li>免費版所有功能</li>
+              <li>完整 POS 系統</li>
+              <li>客製化版面</li>
+              <li>AI 數據異常提示</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="#demo" class="btn btn-primary">立即升級</a>
+          </div>
+        </div>
+        <div class="pricing-plan">
+          <div class="pricing-body">
+            <h4>專業版</h4>
+             <p class="plan-subtitle">多平台整合，AI 顧問加速決策</p>
+            <div class="price">NT$599<span>/月</span></div>
+            <ul class="pricing-features">
+              <li>基本版所有功能</li>
+              <li>多平台整合</li>
+              <li>AI 銷售顧問</li>
+              <li>AI 銷售顧問</li>
+              <li>AI 銷售顧問</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="#demo" class="btn btn-secondary">線上預約</a>
+          </div>
+        </div>
+        <div class="pricing-illustration">
+            <img src="https://img.shoplineapp.com/media/image_clips/6800aaa8e0d9b3000e3b977e/original.png?1744874152" alt="價格方案裝飾圖" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa8e0d9b3000e3b977e/original.png?1744874152'; this.alt='Image load error'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>常見問題</h2> </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">Q：我完全不懂數據，也能用嗎？</button>
+          <div class="faq-answer">
+            <p>A：絕對可以！我們的設計理念就是簡單直覺，搭配教學文件與客服支援，保證您能輕鬆上手，體驗數據帶來的價值。</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Q：支援哪些電商或社群平台？</button>
+          <div class="faq-answer">
+             <p>A：專業版支援整合多平台。您可以隨時與我們確認您使用的平台是否支援。</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Q：我的資料安全嗎？</button>
+          <div class="faq-answer">
+            <p>A：我們非常重視資料安全。系統採用銀行等級加密技術，並儲存於高規格雲端主機，符合國際資安標準與台灣法規。</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Q：免費試用期有多長？需要綁信用卡嗎？</button>
+          <div class="faq-answer">
+            <p>A：免費版提供持續免費使用。基本版提供 30 天免費試用，無需提供信用卡資訊，試用期滿再決定是否付費。</p>
+          </div>
+        </div>
+        <!-- <div class="faq-item">
+          <button class="faq-question">Q：如何取消訂閱或變更方案？</button>
+          <div class="faq-answer">
+            <p>A：您可以隨時在系統後台輕鬆變更方案或取消訂閱，操作簡單。變更方案通常會依比例計算費用。</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <footer id="cta">
+    <div class="container">
+      <h2>準備好讓數據成為你的超能力了嗎？</h2>
+      <div class="footer-buttons">
+        <a href="#demo" class="btn btn-primary">立即免費試用</a>
+        <a href="#demo" class="btn btn-secondary">預約專人 Demo</a>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2025 智慧銷售數據系統 (DataCrepe). All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- The Modal/Popup -->
+  <div id="demoRequestModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 class="form-title">預約試用</h2>
+      <form id="demoRequestForm">
+        <div class="form-group">
+          <label for="name" class="required">姓名</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="company" class="required">公司或個人</label>
+          <input type="text" id="company" name="company" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="required">電子郵件</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone" class="required">電話</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="industry" class="required">產業</label>
+          <input type="text" id="industry" name="industry" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="jobTitle" class="required">職稱</label>
+          <input type="text" id="jobTitle" name="jobTitle" required>
+        </div>
+        
+        <button type="submit" class="submit-btn">送出申請</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // --- Mobile menu toggle ---
+    const mobileMenuButton = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuButton && navLinks) {
+        mobileMenuButton.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // --- Smooth scrolling for anchor links ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+
+        // Special handling for placeholder links
+        if (targetId === '#demo' || targetId === '#login') {
+             e.preventDefault();
+             if (targetId === '#demo') {
+                 // Open demo request modal
+                 document.getElementById('demoRequestModal').style.display = 'block';
+             } else if (targetId === '#login') {
+                  Swal.fire({
+                      title: 'Crispy says',
+                      text: '登入功能暫未開放！',
+                      imageUrl: 'https://img.shoplineapp.com/media/image_clips/68021a6ec9d2cb000d08686a/original.png?1744968302',
+                      imageWidth: 80,
+                      imageHeight: 80,
+                      imageAlt: 'Crispy mascot',
+                      confirmButtonText: 'OK',
+                      confirmButtonColor: '#F4A259',
+                      customClass: {
+                       image: 'swal-image-close-to-title'
+                      }
+                  });
+             }
+             return;
+        }
+
+        if (targetId === '#') {
+             return;
+        }
+
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            e.preventDefault();
+
+            if (navLinks && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+
+            const navHeight = document.querySelector('nav')?.offsetHeight || 70;
+            const offsetTop = targetElement.offsetTop - navHeight - 20;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+        } else {
+            console.warn(`Smooth scroll target not found for href: ${targetId}`);
+        }
+      });
+    });
+
+    // --- Demo Request Modal Logic ---
+    const modal = document.getElementById("demoRequestModal");
+    const closeBtn = modal.querySelector(".close");
+    const demoForm = document.getElementById("demoRequestForm");
+    
+    // When the user clicks on <span> (x), close the modal
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    
+    // Handle form submission
+    demoForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById("name").value;
+      const company = document.getElementById("company").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const industry = document.getElementById("industry").value;
+      const jobTitle = document.getElementById("jobTitle").value;
+      
+      // Create email body with form data
+      const emailBody = `
+        預約試用
+
+        姓名: ${name}
+        公司或個人: ${company}
+        聯絡資訊: 
+        - 電子郵件: ${email}
+        - 電話: ${phone}
+        產業: ${industry}
+        職稱: ${jobTitle}
+      `;
+      
+      // Create mailto link with the requested subject format
+        const mailtoLink = `mailto:datacrepe.info@gmail.com?subject=${encodeURIComponent(`${company} ${name} 預約試用 DataCrepe`)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open the user's email client
+      window.location.href = mailtoLink;
+      
+      // Close the modal
+      modal.style.display = "none";
+      
+      // Reset form fields
+      demoForm.reset();
+    });
+
+    // --- Testimonial Carousel Logic (Show 3 Slides) ---
+    const slidesWrapper = document.querySelector('.testimonial-slides-wrapper');
+    const prevButton = document.querySelector('.prev-btn');
+    const nextButton = document.querySelector('.next-btn');
+    let currentTestimonialIndex; // Will be set after cloning
+    let testimonialSlides = []; // Original slides
+    let allSlides = []; // All slides including clones
+    let totalSlides = 0;
+    let visibleSlides = 3; // Default
+    let slideWidth = 0;
+    let gap = 32; // Default 2rem gap
+    let isTransitioning = false;
+    const transitionDuration = 500; // ms, match CSS transition if any
+
+    function initializeCarousel() {
+        if (!slidesWrapper) return;
+        testimonialSlides = Array.from(slidesWrapper.querySelectorAll('.testimonial-card'));
+        totalSlides = testimonialSlides.length;
+
+        calculateVisibleSlides();
+        
+        if (totalSlides <= visibleSlides) { // Hide nav if not enough slides for scrolling
+            const testimonialNav = document.querySelector('.testimonial-nav');
+            if(testimonialNav) testimonialNav.style.display = 'none';
+            return; // No need for slide logic
+        }
+        
+        setupInfiniteScroll();
+        calculateSlideWidth(); // Calculate width based on all slides
+        updateCarousel(false); // Initial position without animation
+    }
+
+    function calculateVisibleSlides() {
+        if (window.innerWidth > 991) {
+            visibleSlides = 3;
+        } else if (window.innerWidth > 768) {
+            visibleSlides = 2;
+        } else {
+            visibleSlides = 1;
+        }
+    }
+
+    function setupInfiniteScroll() {
+        // Clear existing clones if any (for resize)
+        slidesWrapper.innerHTML = '';
+        testimonialSlides.forEach(slide => slidesWrapper.appendChild(slide)); // Add originals back
+        
+        // Calculate gap based on computed style
+        const computedStyle = window.getComputedStyle(slidesWrapper);
+        gap = parseFloat(computedStyle.gap) || 32;
+
+        // Clone first 'visibleSlides' slides and append them
+        for (let i = 0; i < visibleSlides; i++) {
+            const clone = testimonialSlides[i].cloneNode(true);
+            slidesWrapper.appendChild(clone);
+        }
+
+        // Clone last 'visibleSlides' slides and prepend them
+        for (let i = totalSlides - visibleSlides; i < totalSlides; i++) {
+            const clone = testimonialSlides[i].cloneNode(true);
+            slidesWrapper.insertBefore(clone, slidesWrapper.firstChild);
+        }
+        
+        // Update the list of all slides including clones
+        allSlides = slidesWrapper.querySelectorAll('.testimonial-card');
+        
+        // Set initial index to show the first original slide
+        currentTestimonialIndex = visibleSlides; 
+    }
+
+    function calculateSlideWidth() {
+        if (totalSlides > 0 && allSlides.length > 0) {
+            // More precise: Get container width and calculate based on that
+            const containerWidth = slidesWrapper.parentElement.offsetWidth;
+            if (window.innerWidth > 991) { // Show 3
+                slideWidth = (containerWidth - 2 * gap) / 3;
+            } else if (window.innerWidth > 768) { // Show 2
+                slideWidth = (containerWidth - gap) / 2;
+            } else { // Show 1
+                slideWidth = containerWidth;
+            }
+            // Apply the calculated width to all slides (originals and clones)
+            allSlides.forEach(slide => {
+                 slide.style.minWidth = `${slideWidth}px`; // Use precise pixel width
+            });
+        }
+    }
+
+    function updateCarousel(animate = true) {
+        if (!slidesWrapper) return;
+        
+        // Calculate the correct translation amount including gaps
+        // We need to account for the prepended clones in the calculation
+        const translateAmount = currentTestimonialIndex * (slideWidth + gap);
+        
+        slidesWrapper.style.transition = animate ? `transform ${transitionDuration / 1000}s ease-in-out` : 'none';
+        slidesWrapper.style.transform = `translateX(-${translateAmount}px)`;
+    }
+
+    function nextSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        currentTestimonialIndex++;
+        updateCarousel(true);
+        
+        // Use setTimeout to handle the jump after transition completes
+        setTimeout(() => {
+            // Check if we've moved past the last original slide into the end clones
+            if (currentTestimonialIndex >= totalSlides + visibleSlides) {
+                currentTestimonialIndex = visibleSlides; // Jump back to the first original slide
+                updateCarousel(false); // Update instantly without animation
+            }
+            isTransitioning = false;
+        }, transitionDuration);
+    }
+
+    function prevSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        currentTestimonialIndex--;
+        updateCarousel(true);
+        
+        // Use setTimeout to handle the jump after transition completes
+        setTimeout(() => {
+            // Check if we've moved past the first original slide into the start clones
+            if (currentTestimonialIndex < visibleSlides) {
+                // Jump to the corresponding last original slide (before the end clones)
+                currentTestimonialIndex = totalSlides + visibleSlides - 1;
+                updateCarousel(false); // Update instantly without animation
+            }
+            isTransitioning = false;
+        }, transitionDuration);
+    }
+
+    function handleResize() {
+        // Temporarily remove transition to avoid visual glitches during resize
+        slidesWrapper.style.transition = 'none';
+        
+        calculateVisibleSlides();
+        // Re-setup clones based on new visible count
+        setupInfiniteScroll(); 
+        calculateSlideWidth();
+        // Reset position to the start of original slides without animation
+        updateCarousel(false); 
+    }
+
+    if (prevButton && nextButton && slidesWrapper) {
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        // Initialize
+        initializeCarousel();
+        
+        // Debounced resize handler
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(handleResize, 250);
+        });
+
+    } else {
+        const testimonialNav = document.querySelector('.testimonial-nav');
+        if(testimonialNav) testimonialNav.style.display = 'none';
+        console.warn("Testimonial carousel navigation or slides not found.");
+    }
+
+    // --- FAQ Accordion Logic ---
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const questionButton = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        if (questionButton && answer) {
+            questionButton.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Optional: Close others
+                // faqItems.forEach(otherItem => {
+                //    if (otherItem !== item) otherItem.classList.remove('active');
+                // });
+
+                item.classList.toggle('active');
+            });
+        }
+    });
+
+  </script>
+</body>
+</html>
