@@ -908,14 +908,42 @@
       .pricing-illustration { display: none; }
 
       /* Testimonials on mobile (Show 1) */
-      .testimonial-outer-container { max-width: 100%; }
-      .testimonial-carousel-container { max-width: calc(100% - 2rem); }
+      .testimonial-outer-container { max-width: 100%; position: relative; /* Ensure parent is positioned for absolute children */ }
+      .testimonial-carousel-container { max-width: 100%; /* Adjust width if needed, but 100% is likely fine */ padding: 0; /* REMOVE padding */ }
       .testimonial-slides-wrapper { gap: 0; } /* No gap if only 1 shown */
       .testimonial-card {
           min-width: 100%; /* Show 1 */
           padding: 1.5rem;
       }
-      .testimonial-nav { display: none; }
+      .testimonial-nav {
+           position: absolute; /* Position over the carousel */
+           top: 50%; /* Center vertically */
+           left: 0;
+           width: 100%; /* Full width */
+           transform: translateY(-50%); /* Fine-tune vertical centering */
+           padding: 0; /* No padding needed for container */
+           justify-content: space-between; /* Push buttons to edges */
+           pointer-events: none; /* Allow clicks to pass through */
+           z-index: 10; /* Ensure buttons are on top */
+      }
+      .testimonial-nav button {
+           position: absolute; /* Position buttons within nav */
+           top: 50%; /* Vertical center relative to nav */
+           transform: translateY(-50%); /* Fine-tune centering */
+           margin: 0; /* Reset margins */
+           width: 40px; /* Smaller buttons */
+           height: 40px;
+           font-size: 1.2rem;
+           line-height: 40px; /* Adjust line height */
+           box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Reduce shadow */
+           pointer-events: auto; /* Make buttons clickable */
+      }
+      .testimonial-nav button.prev-btn {
+            left: 20px; /* Increase offset due to removed container padding */
+      }
+      .testimonial-nav button.next-btn {
+            right: 20px; /* Increase offset due to removed container padding */
+      }
       .testimonial-quote { font-size: 1rem; }
 
       /* FAQ on mobile */
@@ -939,13 +967,15 @@
     
     .modal-content {
       background-color: var(--white);
-      margin: 10% auto;
+      margin: 5% auto; /* Reduce top/bottom margin for shorter screens */
       padding: 30px;
       border: 1px solid var(--border-light);
       width: 90%;
       max-width: 500px;
       border-radius: 16px;
       box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      max-height: 85vh; /* Limit height to 85% of viewport height */
+      overflow-y: auto; /* Enable vertical scrolling when needed */
     }
     
     .close {
@@ -1466,13 +1496,20 @@
     let isTransitioning = false;
     const transitionDuration = 500; // ms, match CSS transition if any
 
+    function updateGapValue() {
+        if (!slidesWrapper) return;
+        const computedStyle = window.getComputedStyle(slidesWrapper);
+        gap = parseFloat(computedStyle.gap) || 0; // Default to 0 if gap is not set or computable
+    }
+
     function initializeCarousel() {
         if (!slidesWrapper) return;
         testimonialSlides = Array.from(slidesWrapper.querySelectorAll('.testimonial-card'));
         totalSlides = testimonialSlides.length;
 
         calculateVisibleSlides();
-        
+        updateGapValue(); // Update gap based on current visible slides
+
         if (totalSlides <= visibleSlides) { // Hide nav if not enough slides for scrolling
             const testimonialNav = document.querySelector('.testimonial-nav');
             if(testimonialNav) testimonialNav.style.display = 'none';
@@ -1499,9 +1536,7 @@
         slidesWrapper.innerHTML = '';
         testimonialSlides.forEach(slide => slidesWrapper.appendChild(slide)); // Add originals back
         
-        // Calculate gap based on computed style
-        const computedStyle = window.getComputedStyle(slidesWrapper);
-        gap = parseFloat(computedStyle.gap) || 32;
+        // Gap is updated in initializeCarousel and handleResize
 
         // Clone first 'visibleSlides' slides and append them
         for (let i = 0; i < visibleSlides; i++) {
@@ -1523,15 +1558,14 @@
     }
 
     function calculateSlideWidth() {
-        if (totalSlides > 0 && allSlides.length > 0) {
-            // More precise: Get container width and calculate based on that
+        if (totalSlides > 0 && allSlides.length > 0 && slidesWrapper.parentElement) {
             const containerWidth = slidesWrapper.parentElement.offsetWidth;
-            if (window.innerWidth > 991) { // Show 3
+            if (visibleSlides === 3) { // Show 3
                 slideWidth = (containerWidth - 2 * gap) / 3;
-            } else if (window.innerWidth > 768) { // Show 2
+            } else if (visibleSlides === 2) { // Show 2
                 slideWidth = (containerWidth - gap) / 2;
             } else { // Show 1
-                slideWidth = containerWidth;
+                slideWidth = containerWidth; // Use the exact container width for a single slide
             }
             // Apply the calculated width to all slides (originals and clones)
             allSlides.forEach(slide => {
@@ -1590,11 +1624,13 @@
 
     function handleResize() {
         // Temporarily remove transition to avoid visual glitches during resize
+        if (!slidesWrapper) return;
         slidesWrapper.style.transition = 'none';
-        
+
         calculateVisibleSlides();
+        updateGapValue(); // Update gap based on new visible slides count
         // Re-setup clones based on new visible count
-        setupInfiniteScroll(); 
+        setupInfiniteScroll();
         calculateSlideWidth();
         // Reset position to the start of original slides without animation
         updateCarousel(false); 
