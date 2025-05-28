@@ -3,119 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DataCrepe</title>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta name="description" content="DataCrepe - 專為微商與小型商家打造的智慧銷售系統，簡單、直覺、效率翻倍">
+  <meta name="keywords" content="DataCrepe, 智慧銷售系統, POS系統, 數據分析, 小型商家">
+  <title>DataCrepe - 智慧銷售數據系統</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/sweetalert2@11" as="script">
+  <link rel="preconnect" href="https://img.shoplineapp.com">
+  <link rel="dns-prefetch" href="https://img.shoplineapp.com">
+  
+  <!-- Load SweetAlert2 with defer for better performance -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "DataCrepe",
+    "description": "專為微商與小型商家打造的智慧銷售系統，簡單、直覺、效率翻倍",
+    "url": "https://datacrepe.net",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": ["Web", "iOS", "Android"],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "TWD",
+      "priceValidUntil": "2025-12-31",
+      "availability": "https://schema.org/InStock"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "DataCrepe"
+    }
+  }
+  </script>
+  
   <style>
-    /* Import Fonts (Example - replace with actual font source if needed) */
-    /* @import url('path/to/louis-george-cafe.css'); */
-    /* @import url('path/to/yuan-ti-fan.css'); */
-
-    /* CSS Variables for Theme Colors */
+    /* Critical CSS - Above the fold styles */
     :root {
-      /* Original Theme Colors (Keeping for reference or specific elements) */
-      --primary-orig: #F4A259;
-      --primary-dark-orig: #e58c3c;
-      --secondary-orig: #5B8C85;
-      --accent-orig: #F25C5C;
-      --light-orig: #FFFCF5;
-      --dark-orig: #4A4238; /* Keep for potential contrast */
-
-      /* New Colors based on Request */
-      --hero-bg: #EDA55F; /* Darker Orange */
-      --hero-button-bg: #FCE9C3; /* Lighter Orange */
-      --text-brown: #968777; /* Brown Text Color */
-      --nav-bg: #FCE9C3; /* Lighter Orange for Nav */
-
-      /* General Colors */
+      --hero-bg: #F9A250;
+      --hero-button-bg: #FFE9BE;
+      --text-brown: #968777;
+      --nav-bg: #FCE9C3;
       --white: #FFFFFF;
       --light-section-bg: #FFFCF5;
       --border-light: #eee0c6;
+      --dark-orig: #4A4238;
+      --transition-speed: 0.3s;
     }
 
-    /* Global Reset and Box Sizing */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /* Body Styling */
     body {
-      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.6;
-      color: var(--text-brown); /* Default text color to brown */
-      background-color: var(--white);
-    }
-
-    /* Heading Styles */
-    h1, h2, h3, h4, h5, h6 {
-      margin: 1rem 0;
-      line-height: 1.3;
-      color: var(--text-brown); /* Headings also brown */
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: normal;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      font-weight: normal;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      font-weight: normal;
-    }
-
-    h4 {
-      font-size: 1.2rem;
-      font-weight: normal;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Paragraph Styling */
-    p {
-      margin-bottom: 1rem;
       color: var(--text-brown);
+      background-color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Centered Text Helper */
-    .text-center {
-        text-align: center;
+    /* Utility classes */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    /* Container for Centering Content */
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* --- Navigation Bar Styling --- */
+    .text-center {
+      text-align: center;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      margin: 1rem 0;
+      line-height: 1.3;
+      color: var(--text-brown);
+    }
+
+    h1 { font-size: 2.5rem; font-weight: 600px}
+    h2 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 600px}
+    h3 { font-size: 1.6rem; margin-top: 1rem; margin-bottom: 0.5rem; }
+    h4 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-brown);
+      font-size: 1.1rem;
+    }
+
+    /* Navigation */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: rgba(252, 233, 195, 0.95);
-      padding: 0 1rem; 
+      padding: 0 1rem;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
       border-bottom: 1px solid rgba(150, 135, 119, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    /* Logo Styling (Image) */
     .logo img {
-      display: block; /* Remove extra space below image */
-      height: 40px; /* Adjust height as needed */
-      width: auto; /* Maintain aspect ratio */
+      display: block;
+      height: 40px;
+      width: auto;
     }
 
     .nav-links {
@@ -132,175 +146,132 @@
       text-decoration: none;
       color: var(--text-brown);
       font-weight: 500;
-      font-family: '圓體-繁', sans-serif;
-      transition: color 0.3s;
+      transition: color var(--transition-speed);
       padding: 0.5rem 0;
     }
 
-    .nav-links a:not(.btn):hover {
+    .nav-links a:not(.btn):hover,
+    .nav-links a:not(.btn):focus {
       color: var(--hero-bg);
     }
 
-    /* Nav Button Styles: dark orange bg, white text. Hover: light orange bg, dark orange text */
-    .btn-nav {
-        padding: 0.2rem 1rem;
-        font-size: 0.9rem;
-        margin-left: 0.5rem;
-        box-shadow: none;
-        font-weight: normal;
-        border-radius: 6px; /* Slightly less rounded */
-        background-color: var(--hero-bg);
-        border: 1px solid var(--hero-bg);
-        color: var(--white);
-    }    
-
-    .btn-nav:hover {
-        background-color: var(--hero-button-bg); /* Light orange bg */
-        border-color: var(--hero-button-bg);
-        color: var(--hero-bg); /* Dark orange text */
-        box-shadow: none;
-        transform: none;
-    }
-
-
-    .mobile-menu {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-brown);
-    }
-
-    /* General Section Padding */
-    section {
-      padding: 6rem 2rem;
-    }
-    footer {
-        padding: 4rem 2rem;
-    }
-
-    /* --- Hero Section Styling --- */
-    .hero {
-      background-color: var(--hero-bg);
-      color: var(--white); /* White text */
-      text-align: center;
-      padding: 10rem 2rem 8rem;
-      position: relative;
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero .container {
-        display: block;
-        max-width: 800px;
-    }
-
-    .hero-content {
-        max-width: 100%;
-    }
-
-    .hero h1 {
-      font-family: '圓體-繁', sans-serif;
-      font-size: 2.8rem;
-      font-weight: normal;
-      margin-bottom: 0.5rem;
-      color: var(--white); /* White text */
-    }
-
-    .hero h2.subtitle {
-      font-family: 'Louis George Cafe', sans-serif;
-      font-weight: bold;
-      font-size: 1.4rem;
-      margin-bottom: 1.5rem;
-      color: var(--white); /* White text */
-      letter-spacing: 0.5px;
-    }
-
-    .hero p.description {
-      font-family: '圓體-繁', sans-serif;
-      font-size: 1.1rem;
-      font-weight: normal;
-      margin: 0 auto 2.5rem auto;
-      max-width: 700px;
-      color: var(--white); /* White text */
-      line-height: 1.7;
-    }
-
-     .hero-buttons {
-        margin-top: 1rem;
-     }
-
-    /* --- General Button Styling --- */
+    /* Buttons */
     .btn {
       display: inline-block;
       padding: 0.7rem 1.6rem;
       margin: 0.5rem 0.5rem 0.5rem 0;
-      background-color: EA9A4A;
+      background-color: #EA9A4A;
       color: white;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s;
+      border-radius: 50px;
+      font-weight: 550;
+      letter-spacing: 0.5px;
+      transition: all var(--transition-speed);
       border: 1px solid transparent;
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
       cursor: pointer;
       font-family: '圓體-繁', sans-serif;
     }
 
-    .btn:hover {
+    .btn:hover,
+    .btn:focus {
       transform: translateY(-2px);
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      outline: none;
     }
 
-    /* Specific Hero Button Style */
+    .btn:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-nav {
+      padding: 0.2rem 1rem;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+      box-shadow: none;
+      font-weight: normal;
+      border-radius: 6px;
+      background-color: var(--hero-bg);
+      border: 1px solid var(--hero-bg);
+      color: var(--white);
+    }
+
+    .btn-nav:hover,
+    .btn-nav:focus {
+      background-color: var(--hero-button-bg);
+      border-color: var(--hero-button-bg);
+      color: var(--hero-bg);
+      box-shadow: none;
+      transform: none;
+    }
+
     .btn-hero {
-        background-color: var(--hero-button-bg);
-        color: var(--hero-bg); /* Dark Orange text */
-        padding: 1rem 3rem;
-        font-size: 1.1rem;
-        font-weight: normal;
-        border-radius: 50px;
-        box-shadow: 0 4px 10px rgba(150, 135, 119, 0.2);
-        border: none;
+      background-color: var(--hero-bg);
+      color: white;
+      padding: 1rem 3rem;
+      font-size: 1.1rem;
+      font-weight: normal;
+      border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(150, 135, 119, 0.2);
+      border: none;
     }
 
-    .btn-hero:hover {
-        background-color: #f8e0b1;
-        box-shadow: 0 6px 15px rgba(150, 135, 119, 0.3);
-        transform: translateY(-2px);
+    .btn-hero:hover,
+    .btn-hero:focus {
+      background-color: #f8e0b1;
+      box-shadow: 0 6px 15px rgba(150, 135, 119, 0.3);
+      transform: translateY(-2px);
     }
 
-    /* Primary Button Style (Used elsewhere) */
     .btn-primary {
       background-color: var(--hero-bg);
       color: white;
       border-color: var(--hero-bg);
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover,
+    .btn-primary:focus {
       background-color: #d67c2a;
       border-color: #d67c2a;
     }
 
-    /* Secondary Button Style (Used elsewhere) */
     .btn-secondary {
-       background-color: transparent;
-       border: 1px solid var(--hero-bg);
-       color: var(--hero-bg);
-       box-shadow: none;
-    }
-    .btn-secondary:hover {
-        background-color: rgba(237, 165, 95, 0.1);
-        color: var(--hero-bg);
+      background-color: transparent;
+      border: 1px solid var(--hero-bg);
+      color: var(--hero-bg);
+      box-shadow: none;
     }
 
-    /* --- Section Title Styling --- */
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+      background-color: rgba(237, 165, 95, 0.1);
+      color: var(--hero-bg);
+    }
+
+    /* Mobile menu button */
+    .mobile-menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-brown);
+      background: none;
+      border: none;
+      padding: 0.5rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    footer {
+      padding: 4rem 2rem;
+    }
+
+    /* Section title */
     .section-title {
       text-align: center;
-      margin-bottom: 4rem;
-      padding-bottom: 2.6rem; /* Increased padding (approx 1.6rem + original 1rem) */
-      position: relative; /* Needed for underline positioning */
+      position: relative;
     }
 
     .section-title h2 {
@@ -309,14 +280,13 @@
       padding-bottom: 30px;
       font-family: '圓體-繁', sans-serif;
       font-weight: normal;
-      margin-bottom: 0; /* Remove default margin */
+      margin-bottom: 0;
     }
 
     .section-title h2::after {
       content: '';
       position: absolute;
-      /* Position underline relative to the section-title padding */
-      bottom: 1rem; /* Adjust based on padding-bottom */
+      bottom: 1rem;
       left: 50%;
       transform: translateX(-50%);
       width: 60px;
@@ -325,7 +295,166 @@
       border-radius: 2px;
     }
 
-    /* --- "For Whom" Section Styling --- */
+    /* Hero Section */
+    .hero {
+      background-image: linear-gradient(#F9A250 0%, #FFE9BE 100%);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      min-height: 65vh;
+      position: relative;
+      color: #fff;
+      padding: 10rem 2rem 8rem;
+      padding-top: 200px;
+    }
+
+    .hero-left {
+      flex: 0 0 45%;
+      position: relative;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      left: -5%;
+      top: 50%;
+      width: 38vw;
+      aspect-ratio: 1/1;
+      background: url('https://img.shoplineapp.com/media/image_clips/682d764d8f07f4000de208a3/original.png?1747809868') center/contain no-repeat;
+      opacity: .25;
+      transform: translateY(-50%);
+      will-change: transform;
+    }
+
+    .brand {
+      font: 600 6rem/1 'Louis George Cafe', sans-serif;
+      letter-spacing: .5px;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+      color: #FFFFFF;
+    }
+
+    .hero-right {
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .tagline {
+      font: 600 3rem/1.3 'Louis George Cafe', sans-serif;
+      margin-bottom: 2.5rem;
+      letter-spacing: 1.5px;
+      color: #FFFFFF;
+    }
+
+    .description {
+      font-size: 1.25rem;
+      align-content: right;
+      line-height: 2;
+      margin-bottom: 3rem;
+      color: #FFFFFF;
+    }
+
+    .cta-big {
+      padding: 1.4rem 4rem;
+      font-size: 1.4rem;
+      border-radius: 60px;
+    }
+
+    /* Pain Points Section */
+    #pain-points {
+      background: var(--light-section-bg);
+      color: #fff;
+      padding: 5rem 0 6rem;
+      text-align: center;
+    }
+
+    .pain-title {
+      font-size: 1.6rem;
+      color: var(--text-brown);
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .pain-title::after {
+      content: '';
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background-color: var(--hero-bg);
+      border-radius: 2px;
+    }
+
+    .pain-cards {
+      display: flex;
+      gap: 4rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .pain-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 240px;
+      position: relative;
+    }
+
+    .pain-item:not(.bear-wrapper) {
+      margin-top: 3.5rem;
+    }
+
+    .pain-box {
+      background: var(--hero-bg);
+      border-radius: 18px;
+      padding: 2.8rem 1.2rem;
+      font-size: 1.5rem;
+      line-height: 1.6;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+      z-index: 2;
+      color: white;
+    }
+
+    .pain-arrow {
+      width: 0;
+      height: 0;
+      border: 14px solid transparent;
+      border-top: 20px solid var(--hero-bg);
+      margin: 1.4rem 0;
+    }
+
+    .pain-solution {
+      color: var(--text-brown);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .pain-solution small {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: normal;
+      letter-spacing: .5px;
+      margin-top: .25rem;
+    }
+
+    .bear-wrapper {
+      padding-top: 3.5rem;
+    }
+
+    .pain-bear {
+      position: absolute;
+      top: -53px;
+      right: calc(50% - 60px);
+      width: 120px;
+      z-index: 100;
+    }
+
+    /* For Whom Section */
     #for-whom {
       background-color: var(--light-section-bg);
     }
@@ -342,7 +471,7 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
       padding: 2rem;
       text-align: center;
       border: 1px solid var(--border-light);
@@ -358,196 +487,262 @@
       height: 80px;
       margin: 0 auto 1.5rem auto;
     }
+
     .card-icon img {
-        max-width: 100%;
-        height: auto;
-    }
-    .card h3 {
-        font-family: '圓體-繁', sans-serif;
-        font-weight: normal;
+      max-width: 100%;
+      height: auto;
     }
 
-    /* --- Feature Section Styling --- */
+    .card h3 {
+      font-family: '圓體-繁', sans-serif;
+      font-weight: normal;
+    }
+
+    /* Features Section */
     #features {
-        background-color: var(--white);
+      background-color: var(--white);
     }
 
     .feature-block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 3rem;
-        margin-bottom: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 5rem;
     }
+
     .feature-block:last-child {
-        margin-bottom: 0;
-    }
-    .feature-block:nth-child(even) .feature-image {
-        order: 1;
+      margin-bottom: 0;
     }
 
     .feature-image {
-        flex: 1;
-        max-width: 500px;
-        text-align: center;
+      flex: 1;
+      max-width: 700px;
+      text-align: center;
     }
+
     .feature-image img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 0px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 0px;
     }
 
     .feature-content {
-        flex: 1;
-        max-width: 500px;
-    }
-    .feature-content h3 {
-        font-size: 1.8rem;
-        color: var(--hero-bg);
-        margin-bottom: 1rem;
-        font-family: '圓體-繁', sans-serif;
-        font-weight: normal;
-    }
-    .feature-content ul {
-        list-style: none;
-        padding: 0;
-        margin-top: 1.5rem;
-    }
-    .feature-content ul li {
-        margin-bottom: 0.8rem;
-        padding-left: 2rem;
-        position: relative;
-        color: var(--text-brown);
-    }
-    .feature-content ul li::before {
-        content: '✓';
-        position: absolute;
-        left: 0;
-        color: var(--hero-bg); /* Dark Orange ticks */
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-    .feature-button-container {
-        margin-top: 4rem;
-        text-align: center;
+      flex: 1;
+      max-width: 300px;
     }
 
-    /* --- Testimonials Section (Show 3 Slides) --- */
+    .feature-content h3 {
+      font-size: 1.8rem;
+      color: var(--hero-bg);
+      margin-bottom: 1rem;
+      font-family: '圓體-繁', sans-serif;
+      font-weight: normal;
+    }
+
+    .feature-content ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+
+    .feature-content ul li {
+      margin-bottom: 0.8rem;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--text-brown);
+    }
+
+    .feature-content ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--hero-bg);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .feature-button-container {
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    /* POS System Section */
+    #pos-system {
+      background: var(--white);
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .pos-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      gap: 3rem;
+      position: relative;
+      padding-top: 2rem;
+    }
+
+    .pos-shot {
+      text-align: center;
+      flex: 0 0 calc(50% - 1.5rem);
+    }
+
+    .pos-shot img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .pos-shot figcaption {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--text-brown);
+    }
+
+    .pos-bear-wrap {
+      position: absolute;
+      top: -30px;
+      right: -20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pos-bear {
+      width: 270px;
+    }
+
+    .pos-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .pos-btn {
+      padding: 1rem 3rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+    }
+
+    /* Testimonials Section */
     #testimonials {
-        background-color: var(--light-section-bg);
-        padding-bottom: 8rem;
+      background-color: var(--white);
+      padding-bottom: 8rem;
     }
 
     .testimonial-outer-container {
-        max-width: 1100px;
-        margin: 3rem auto 0;
-        position: relative;
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      position: relative;
     }
 
     .testimonial-carousel-container {
-        /* max-width: 900px; */ /* Adjust width to fit 3 cards + gap */
-        width: 100%; /* Take full width of outer container */
-        margin: 0 auto;
-        position: relative;
-        overflow: hidden; /* Hide parts of cards outside */
-        /* Remove shadow/border from container, apply to cards */
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
     }
 
     .testimonial-slides-wrapper {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-        gap: 2rem; /* Add gap between slides */
-        /* Remove width calculation, flex handles it */
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      gap: 2rem;
     }
 
     .testimonial-card {
-        /* Calculate width for 3 slides + gap */
-        max-width: calc((100% - 4rem) / 3); /* (100% - 2 * gap) / 3 */
-        flex-shrink: 0; /* Prevent shrinking */
-        box-sizing: border-box;
-        background-color: var(--white);
-        border-radius: 16px;
-        padding: 2.5rem 2rem; /* Adjust padding */
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08); /* Add shadow to cards */
-        border: 1px solid #f0f0f0; /* Add border to cards */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-     .testimonial-card h3 {
-        font-size: 1.2rem; /* Adjust size */
-        margin-bottom: 1rem;
-        color: var(--dark-orig);
-    }
-    .testimonial-card .card-icon { /* Reuse icon style */
-        width: 120px; /* Adjust size */
-        height: 160px;
-        margin-bottom: 1rem;
-    }
-    .testimonial-quote {
-        font-style: normal;
-        color: var(--text-brown);
-        margin-bottom: 1.5rem; /* Adjust spacing */
-        flex-grow: 1; /* Allow quote to take space */
-        font-size: 0.95rem; /* Adjust size */
-        line-height: 1.6;
-        max-width: 100%;
-    }
-    .testimonial-author {
-        font-weight: normal;
-        color: var(--text-brown);
-        margin-top: auto; /* Push author down */
-        font-size: 0.9rem;
-    }
-
-    /* Carousel Navigation Arrows */
-    .testimonial-nav {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        left: 0;
-        transform: translateY(-50%);
-        display: flex;
-        justify-content: space-between;
-        padding: 0;
-        pointer-events: none;
-        z-index: 10;
-    }
-    .testimonial-nav button {
-        background: var(--white);
-        border: 1px solid var(--border-light);
-        color: var(--hero-bg);
-        padding: 0;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-        line-height: 50px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        pointer-events: auto;
-    }
-    .testimonial-nav button.prev-btn {
-        margin-left: -25px;
-    }
-    .testimonial-nav button.next-btn {
-        margin-right: -25px;
-    }
-    .testimonial-nav button:hover {
-        background-color: var(--hero-bg);
-        color: var(--white);
-        border-color: var(--hero-bg);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-    /* --- End Testimonials Section --- */
-
-
-    /* --- Pricing Section Styling (Screenshot Match) --- */
-    #pricing {
+      max-width: calc((100% - 4rem) / 3);
+      flex-shrink: 0;
+      box-sizing: border-box;
       background-color: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .testimonial-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--dark-orig);
+    }
+
+    .testimonial-card .card-icon {
+      width: 120px;
+      height: 160px;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-quote {
+      font-style: normal;
+      color: var(--text-brown);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    .testimonial-author {
+      font-weight: normal;
+      color: var(--text-brown);
+      margin-top: auto;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      left: 0;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .testimonial-nav button {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      color: var(--hero-bg);
+      padding: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color var(--transition-speed), color var(--transition-speed), box-shadow var(--transition-speed);
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      line-height: 50px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      pointer-events: auto;
+    }
+
+    .testimonial-nav button.prev-btn {
+      margin-left: -25px;
+    }
+
+    .testimonial-nav button.next-btn {
+      margin-right: -25px;
+    }
+
+    .testimonial-nav button:hover,
+    .testimonial-nav button:focus {
+      background-color: var(--hero-bg);
+      color: var(--white);
+      border-color: var(--hero-bg);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      outline: none;
+    }
+
+    /* Pricing Section */
+    #pricing {
+      background-color: var(--light-section-bg);
       position: relative;
     }
 
@@ -565,13 +760,13 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
       border: 1px solid #f0f0f0;
       display: flex;
       flex-direction: column;
       text-align: center;
       padding: 2rem 1.5rem;
-      position: relative; /* Needed for badge positioning */
+      position: relative;
     }
 
     .pricing-plan:hover {
@@ -579,29 +774,29 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     }
 
-    /* Badge for popular plan - Updated Style */
     .popular-plan {
-        border: 2px solid var(--hero-bg);
-        padding-top: 3.5rem; /* Add padding to make space for badge */
+      border: 2px solid var(--hero-bg);
+      margin-top: -2rem;
+      padding-top: 4rem;
     }
+
     .popular-plan::before {
-        content: '熱門推薦';
-        position: absolute;
-        top: 0; /* Position at the very top */
-        left: 0;
-        width: 100%; /* Full width */
-        background-color: var(--hero-bg);
-        color: white;
-        padding: 0.6rem 1rem; /* Adjust padding */
-        border-radius: 0; /* No rounding inside */
-        font-size: 0.9rem;
-        font-weight: normal;
-        z-index: 2;
-        font-family: '圓體-繁', sans-serif;
-        /* Clip top corners to match parent */
-        border-top-left-radius: 14px; /* Match parent radius - border width */
-        border-top-right-radius: 14px;
-        box-sizing: border-box;
+      content: '熱門推薦';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--hero-bg);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 0;
+      font-size: 0.9rem;
+      font-weight: normal;
+      z-index: 2;
+      font-family: '圓體-繁', sans-serif;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      box-sizing: border-box;
     }
 
     .pricing-body {
@@ -613,18 +808,19 @@
     }
 
     .pricing-body h4 {
-        font-size: 1.4rem;
-        font-weight: normal;
-        color: var(--text-brown);
-        margin-top: 0; /* Remove top margin if header is gone */
-        margin-bottom: 0.25rem;
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: var(--text-brown);
+      margin-top: 0;
+      margin-bottom: 0.25rem;
     }
-    .pricing-body > p.plan-subtitle { /* Target subtitle specifically */
-        font-size: 0.85rem;
-        color: var(--hero-bg); /* Dark Orange subtitle */
-        margin-bottom: 1.5rem;
-        min-height: 2.5em;
-        margin-top: 1rem; /* Add padding above */
+
+    .pricing-body > p.plan-subtitle {
+      font-size: 0.85rem;
+      color: var(--hero-bg);
+      margin-bottom: 1.5rem;
+      min-height: 2.5em;
+      margin-top: 1rem;
     }
 
     .price {
@@ -634,11 +830,13 @@
       color: var(--text-brown);
       font-family: 'Louis George Cafe', sans-serif;
     }
-    .price span {
-        font-size: 1rem;
-        font-weight: normal;
-        color: var(--text-brown);
-        font-family: '圓體-繁', sans-serif;
+
+    .price span,
+    .price .currency {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: var(--text-brown);
+      font-family: '圓體-繁', sans-serif;
     }
 
     .pricing-features {
@@ -646,23 +844,24 @@
       margin: 2rem 0;
       text-align: left;
       width: 100%;
-      padding: 0 1rem;
+      padding: 0 1rem 0 1.8rem;
     }
 
     .pricing-features li {
       padding: 0.5rem 0;
       border-bottom: none;
       position: relative;
-      padding-left: 1.8rem;
+      padding-left: 2.4rem;
       color: var(--text-brown);
       font-size: 0.95rem;
     }
+
     .pricing-features li::before {
-        content: '✓';
-        position: absolute;
-        left: 0;
-        color: var(--hero-bg);
-        font-weight: bold;
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--hero-bg);
+      font-weight: bold;
     }
 
     .pricing-footer {
@@ -670,47 +869,99 @@
       margin-top: auto;
       width: 100%;
     }
-     .pricing-footer .btn {
-        display: block;
-        width: 100%;
-        padding: 0.8rem 1rem;
-        font-size: 1rem;
-        font-weight: normal;
-        border-radius: 8px;
-     }
-     /* Default/Free Plan Button: Orange Outline */
-     .pricing-plan:not(.popular-plan) .pricing-footer .btn {
-         background-color: transparent;
-         border: 1px solid var(--hero-bg);
-         color: var(--hero-bg);
-     }
-      .pricing-plan:not(.popular-plan) .pricing-footer .btn:hover {
-         background-color: rgba(237, 165, 95, 0.1);
-     }
-     /* Popular Plan Button: Solid Orange */
-     .popular-plan .pricing-footer .btn {
-        background-color: var(--hero-bg);
-        border-color: var(--hero-bg);
-        color: white;
-     }
-      .popular-plan .pricing-footer .btn:hover {
-        background-color: #d67c2a;
-        border-color: #d67c2a;
-     }
+
+    .pricing-footer .btn {
+      display: block;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      font-weight: normal;
+      border-radius: 8px;
+    }
+
+    .pricing-plan:not(.popular-plan) .pricing-footer .btn {
+      background-color: transparent;
+      border: 1px solid var(--hero-bg);
+      color: var(--hero-bg);
+    }
+
+    .pricing-plan:not(.popular-plan) .pricing-footer .btn:hover,
+    .pricing-plan:not(.popular-plan) .pricing-footer .btn:focus {
+      background-color: rgba(237, 165, 95, 0.1);
+    }
+
+    .popular-plan .pricing-footer .btn {
+      background-color: var(--hero-bg);
+      border-color: var(--hero-bg);
+      color: white;
+    }
+
+    .popular-plan .pricing-footer .btn:hover,
+    .popular-plan .pricing-footer .btn:focus {
+      background-color: #d67c2a;
+      border-color: #d67c2a;
+    }
 
     .pricing-illustration {
-        position: absolute;
-        bottom: -3rem;
-        right: -3rem;
-        width: 100px;
-        display: none;
-    }
-    .pricing-illustration img {
-        max-width: 100%;
-        height: auto;
+      position: absolute;
+      bottom: -3rem;
+      right: -3rem;
+      width: 100px;
+      display: none;
     }
 
-    /* --- FAQ Section Styling (Accordion) --- */
+    .pricing-illustration img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .pricing-divider {
+      width: 100%;
+      height: 1px;
+      margin: 1.5rem 0;
+      border: 0;
+      background: #F9A250;
+    }
+
+    .addon-label {
+      font-size: .9rem;
+      color: var(--text-brown);
+      margin-bottom: .4rem;
+    }
+
+    .addon-price {
+      font: normal 2rem "Louis George Cafe", sans-serif;
+      margin: .2rem 0;
+      color: var(--text-brown);
+    }
+
+    .addon-price .currency,
+    .addon-price span {
+      font: normal .85rem "圓體-繁", sans-serif;
+    }
+
+    .addon-price.old-price {
+      display: inline-block;
+      color: #bcbcbc;
+      position: relative;
+    }
+
+    .addon-price.old-price::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 2px;
+      background: #bcbcbc;
+      transform: translateY(-50%);
+    }
+
+    .addon-price.new-price {
+      font-weight: bold;
+    }
+
+    /* FAQ Section */
     #faq {
       background-color: var(--light-section-bg);
     }
@@ -727,8 +978,9 @@
       background-color: var(--white);
       overflow: hidden;
     }
+
     .faq-item:last-child {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
 
     .faq-question {
@@ -745,27 +997,30 @@
       border: none;
       cursor: pointer;
       position: relative;
-      transition: background-color 0.3s;
+      transition: background-color var(--transition-speed);
     }
-    .faq-question:hover {
-        background-color: rgba(237, 165, 95, 0.05);
+
+    .faq-question:hover,
+    .faq-question:focus {
+      background-color: rgba(237, 165, 95, 0.05);
+      outline: none;
     }
 
     .faq-question::after {
-        content: '+';
-        position: absolute;
-        right: 1.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.5rem;
-        color: var(--hero-bg);
-        transition: transform 0.3s ease-out;
-    }
-    .faq-item.active .faq-question::after {
-        content: '−';
-        transform: translateY(-50%) rotate(180deg);
+      content: '+';
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: var(--hero-bg);
+      transition: transform var(--transition-speed) ease-out;
     }
 
+    .faq-item.active .faq-question::after {
+      content: '−';
+      transform: translateY(-50%) rotate(180deg);
+    }
 
     .faq-answer {
       color: var(--text-brown);
@@ -776,20 +1031,18 @@
       transition: max-height 0.4s ease-out, padding 0.4s ease-out;
       padding: 0 1.5rem;
       border-top: none;
+      border-left: none;
+      padding-left: 1.5rem;
     }
+
     .faq-item.active .faq-answer {
-        max-height: 300px;
-        padding: 1.5rem;
-        border-top: 1px dashed var(--border-light);
-        transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-    }
-    .faq-answer {
-        border-left: none;
-        padding-left: 1.5rem;
+      max-height: 300px;
+      padding: 1.5rem;
+      border-top: 1px dashed var(--border-light);
+      transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
     }
 
-
-    /* --- Footer Styling --- */
+    /* Footer */
     footer {
       background-color: var(--dark-orig);
       color: rgba(255, 255, 255, 0.8);
@@ -807,21 +1060,27 @@
     .footer-buttons {
       margin-bottom: 3rem;
     }
+
     footer .btn-primary {
       background-color: var(--hero-bg);
       border-color: var(--hero-bg);
       color: white;
     }
-    footer .btn-primary:hover {
+
+    footer .btn-primary:hover,
+    footer .btn-primary:focus {
       background-color: #d67c2a;
       border-color: #d67c2a;
     }
+
     footer .btn-secondary {
       background-color: transparent;
       border-color: rgba(255, 255, 255, 0.7);
       color: rgba(255, 255, 255, 0.9);
     }
-     footer .btn-secondary:hover {
+
+    footer .btn-secondary:hover,
+    footer .btn-secondary:focus {
       background-color: white;
       color: var(--dark-orig);
       border-color: white;
@@ -834,34 +1093,170 @@
       color: rgba(255, 255, 255, 0.6);
       font-size: 0.9rem;
     }
-     .footer-info p {
-         color: rgba(255, 255, 255, 0.6);
-         margin-bottom: 0.5rem;
-     }
 
-    /* --- Responsive Design --- */
-    @media (min-width: 992px) { /* Adjust breakpoint for 3 testimonials */
-        .pricing-illustration { display: block; }
-    }
-    @media (min-width: 769px) {
-        .feature-block { flex-direction: row; }
-         /* Ensure nav buttons are visible */
-        .nav-links li .btn { display: inline-block; }
+    .footer-info p {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0.5rem;
     }
 
-     @media (max-width: 991px) { /* Screen sizes smaller than 3 testimonials */
-         .testimonial-card {
-             min-width: calc((100% - 2rem) / 2); /* Show 2 */
-         }
-     }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.8rem; }
-      h3 { font-size: 1.4rem; }
-      .feature-content h3 { font-size: 1.6rem; }
+    .modal.show {
+      opacity: 1;
+    }
 
-      nav { padding: 0 0.8rem; }
+    .modal-content {
+      background-color: var(--white);
+      margin: 5% auto;
+      padding: 30px;
+      border: 1px solid var(--border-light);
+      width: 90%;
+      max-width: 500px;
+      border-radius: 16px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.show .modal-content {
+      transform: translateY(0);
+    }
+
+    .close {
+      color: var(--text-brown);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      transition: color var(--transition-speed);
+    }
+
+    .close:hover,
+    .close:focus {
+      color: var(--hero-bg);
+      outline: none;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--text-brown);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      color: var(--text-brown);
+      transition: border-color var(--transition-speed);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--hero-bg);
+    }
+
+    .required:after {
+      content: " *";
+      color: var(--hero-bg);
+    }
+
+    .submit-btn {
+      background-color: var(--hero-bg);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      width: 100%;
+      transition: background-color var(--transition-speed);
+    }
+
+    .submit-btn:hover,
+    .submit-btn:focus {
+      background-color: #d67c2a;
+      outline: none;
+    }
+
+    .form-title {
+      margin-top: 0;
+      color: var(--text-brown);
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .swal-image-close-to-title {
+      margin-bottom: 0 !important;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 992px) {
+      .pricing-illustration {
+        display: block;
+      }
+    }
+
+    @media (min-width: 1051px) {
+      .feature-block {
+        flex-direction: row;
+      }
+      .nav-links li .btn {
+        display: inline-block;
+      }
+      .feature-image.active-analysis {
+        order: 2;
+      }
+      .feature-content.active-analysis {
+        order: 1;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      .feature-block {
+        flex-direction: column;
+      }
+      .feature-image {
+        order: 2;
+      }
+      .feature-content {
+        order: 1;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      nav {
+        padding: 0.4rem 0.8rem 0.4rem;
+      }
       .nav-links {
         display: none;
         position: absolute;
@@ -875,443 +1270,603 @@
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         align-items: stretch;
       }
-      .nav-links.active { display: flex; }
-      .nav-links li { margin: 0; text-align: center; padding: 0; }
-       .nav-links a:not(.btn) {
-           padding: 0.8rem 1rem;
-           display: block;
-           color: var(--text-brown);
-       }
-       .nav-links a:not(.btn):hover { color: var(--hero-bg); }
-       .nav-links li .btn {
-           display: block;
-           margin: 0.5rem auto;
-           width: calc(100% - 2rem);
-       }
-      .mobile-menu { display: block; }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links li {
+        margin: 0;
+        text-align: center;
+        padding: 0;
+      }
+      .nav-links a:not(.btn) {
+        padding: 0.8rem 1rem;
+        display: block;
+        color: var(--text-brown);
+      }
+      .nav-links a:not(.btn):hover,
+      .nav-links a:not(.btn):focus {
+        color: var(--hero-bg);
+      }
+      .nav-links li .btn {
+        display: block;
+        margin: 0.5rem auto;
+        width: calc(100% - 2rem);
+      }
+    }
 
-      .hero { padding: 8rem 1rem 6rem; min-height: 50vh; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero h2.subtitle { font-size: 1.2rem; }
-      .hero p.description { font-size: 1rem; }
-      .btn-hero { padding: 0.8rem 2rem; font-size: 1rem; }
+    @media (max-width: 991px) {
+      .testimonial-card {
+        min-width: calc((100% - 2rem) / 2);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.4rem; }
+      .feature-content h3 { font-size: 1.6rem; }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 8rem 1rem 6rem;
+        min-height: 50vh;
+      }
+      .hero-left::before { top: 300%; }
+      .hero-right { flex: 1 1 100%; text-align: center; }
+      .brand { font-size: 3.5rem; }
+      .tagline { font-size: 2rem; text-align: center; }
+      .description { font-size: 1rem; text-align: center; }
+      .cta-big { display: inline-block; margin: 0 auto; }
 
       section, footer { padding: 4rem 1rem; }
 
       .feature-block { gap: 2rem; margin-bottom: 4rem; }
-      .feature-block:nth-child(even) .feature-image { order: 0; }
 
       .pricing-table { grid-template-columns: 1fr; }
-      .pricing-plan { margin-bottom: 2rem; padding-top: 2rem; } /* Adjust padding */
-      .popular-plan { padding-top: 3.5rem; } /* Ensure popular padding is enough */
-      .popular-plan::before { top: -1px; border-radius: 14px 14px 0 0;} /* Adjust badge for mobile */
+      .pricing-plan { margin-bottom: 2rem; padding-top: 2rem; }
+      
+      .popular-plan {
+        padding-top: 6rem;
+      }
+
+      .popular-plan::before {
+        padding: 1.2rem 1rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
       .pricing-illustration { display: none; }
 
-      /* Testimonials on mobile (Show 1) */
-      .testimonial-outer-container { max-width: 100%; position: relative; /* Ensure parent is positioned for absolute children */ }
-      .testimonial-carousel-container { max-width: 100%; /* Adjust width if needed, but 100% is likely fine */ padding: 0; /* REMOVE padding */ }
-      .testimonial-slides-wrapper { gap: 0; } /* No gap if only 1 shown */
+      /* Pain points mobile */
+      .pain-cards { gap: 1.5rem; }
+      .pain-item { max-width: 100%; }
+      .pain-box { font-size: 1rem; }
+      .pain-solution { font-size: 1.1rem; }
+      
+      .bear-wrapper {
+        position: relative;
+        padding-top: 3.5rem;
+      }
+      
+      .pain-bear {
+        position: absolute;
+        top: 15px;
+        display: block;
+        margin: -2.8rem auto 0;
+        z-index: 1000;
+      }
+
+      /* POS mobile */
+      .pos-wrapper { flex-direction: column; padding-top: 4.5rem; }
+      .pos-shot { flex: 1 1 100%; padding: 0 !important}
+      .pos-bear { width: 170px; height: 108px}
+
+      /* Testimonials on mobile */
+      .testimonial-outer-container { max-width: 100%; position: relative; }
+      .testimonial-carousel-container { max-width: 100%; padding: 0; }
+      .testimonial-slides-wrapper { gap: 0; }
       .testimonial-card {
-          min-width: 100%; /* Show 1 */
-          padding: 1.5rem;
+        min-width: 100%;
+        padding: 1.5rem;
       }
       .testimonial-nav {
-           position: absolute; /* Position over the carousel */
-           top: 50%; /* Center vertically */
-           left: 0;
-           width: 100%; /* Full width */
-           transform: translateY(-50%); /* Fine-tune vertical centering */
-           padding: 0; /* No padding needed for container */
-           justify-content: space-between; /* Push buttons to edges */
-           pointer-events: none; /* Allow clicks to pass through */
-           z-index: 10; /* Ensure buttons are on top */
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        padding: 0;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 10;
       }
       .testimonial-nav button {
-           position: absolute; /* Position buttons within nav */
-           top: 50%; /* Vertical center relative to nav */
-           transform: translateY(-50%); /* Fine-tune centering */
-           margin: 0; /* Reset margins */
-           width: 40px; /* Smaller buttons */
-           height: 40px;
-           font-size: 1.2rem;
-           line-height: 40px; /* Adjust line height */
-           box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Reduce shadow */
-           pointer-events: auto; /* Make buttons clickable */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        line-height: 40px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        pointer-events: auto;
       }
       .testimonial-nav button.prev-btn {
-            left: 20px; /* Increase offset due to removed container padding */
+        left: 20px;
       }
       .testimonial-nav button.next-btn {
-            right: 20px; /* Increase offset due to removed container padding */
+        right: 20px;
       }
       .testimonial-quote { font-size: 1rem; }
 
       /* FAQ on mobile */
       .faq-question { font-size: 1rem; padding: 1rem; }
-      .faq-question::after { right: 1rem; font-size: 1.3rem;}
-      .faq-answer { padding: 0 1rem; font-size: 0.95rem;}
+      .faq-question::after { right: 1rem; font-size: 1.3rem; }
+      .faq-answer { padding: 0 1rem; font-size: 0.95rem; }
       .faq-item.active .faq-answer { padding: 1rem; }
     }
 
-    /* Modal popup styling */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1001;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.4);
-    }
-    
-    .modal-content {
-      background-color: var(--white);
-      margin: 5% auto; /* Reduce top/bottom margin for shorter screens */
-      padding: 30px;
-      border: 1px solid var(--border-light);
-      width: 90%;
-      max-width: 500px;
-      border-radius: 16px;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-      max-height: 85vh; /* Limit height to 85% of viewport height */
-      overflow-y: auto; /* Enable vertical scrolling when needed */
-    }
-    
-    .close {
-      color: var(--text-brown);
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-    .close:hover {
-      color: var(--hero-bg);
-    }
-    
-    /* Form styling */
-    .form-group {
-      margin-bottom: 15px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--text-brown);
-    }
-    
-    .form-group input, 
-    .form-group textarea, 
-    .form-group select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      box-sizing: border-box;
-      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', sans-serif;
-      color: var(--text-brown);
-    }
-    
-    .required:after {
-      content: " *";
-      color: var(--hero-bg);
-    }
-    
-    .submit-btn {
-      background-color: var(--hero-bg);
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      font-family: '圓體-繁', 'PingFang TC', 'Noto Sans TC', sans-serif;
-      width: 100%;
-      transition: background-color 0.3s;
-    }
-    
-    .submit-btn:hover {
-      background-color: #d67c2a;
-    }
-    
-    .form-title {
-      margin-top: 0;
-      color: var(--text-brown);
-      font-weight: normal;
-      text-align: center;
-      margin-bottom: 20px;
+    /* Image loading optimization */
+    img {
+      loading: lazy;
     }
 
-    .swal-image-close-to-title {
-      margin-bottom: 0 !important;
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Focus visible for accessibility */
+    :focus-visible {
+      outline: 2px solid var(--hero-bg);
+      outline-offset: 2px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#hero" class="logo">
-        <img src="https://img.shoplineapp.com/media/image_clips/6801ff78e0c1e3000fea1137/original.png?1744961399" alt="DataCrepe Logo" onerror="this.src='https://placehold.co/150x40/cccccc/ffffff?text=Logo'; this.alt='DataCrepe Logo Placeholder'">
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="visually-hidden">跳到主要內容</a>
+
+  <nav role="navigation" aria-label="主要導航">
+    <a href="#hero" class="logo" aria-label="DataCrepe 首頁">
+      <img src="https://img.shoplineapp.com/media/image_clips/6801ff78e0c1e3000fea1137/original.png?1744961399" 
+           alt="DataCrepe Logo" 
+           width="150" 
+           height="40"
+           loading="eager">
     </a>
     <ul class="nav-links">
-      <li><a href="#for-whom">適用對象</a></li>
+      <li><a href="#pain-points">解決痛點</a></li>
       <li><a href="#features">特色優勢</a></li>
-      <li><a href="#testimonials">使用情境</a></li>
+      <li><a href="#for-whom">適用對象</a></li>
+      <li><a href="#pos-system">POS系統</a></li>
       <li><a href="#pricing">價格方案</a></li>
+      <li><a href="#testimonials">使用情境</a></li>
       <li><a href="#faq">常見問題</a></li>
       <li><a href="#demo" class="btn btn-nav">預約試用</a></li>
       <li><a href="#login" class="btn btn-nav">登入</a></li>
     </ul>
-    <div class="mobile-menu">☰</div>
+    <button class="mobile-menu" aria-label="開啟選單" aria-expanded="false">☰</button>
   </nav>
 
-  <header class="hero" id="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1>輕鬆掌握銷售與經營數據</h1>
-            <h2 class="subtitle">Manage your business smarter, not harder.</h2>
-            <p class="description">一款專為微商與小型商家打造的智慧銷售系統，簡單、直覺、效率翻倍。</p>
-            <div class="hero-buttons">
-                <a href="#demo" class="btn btn-hero">立即免費試用</a>
-            </div>
-        </div>
-    </div>
-  </header>
-
-  <section id="for-whom">
-    <div class="container">
-      <div class="section-title">
-        <h2>我們的系統適合...</h2> </div>
-      <div class="card-container">
-        <div class="card">
-          <div class="card-icon">
-            <img src="https://img.shoplineapp.com/media/image_clips/6800aaa885a909000c31b937/original.png?1744874152" alt="小型商家圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa885a909000c31b937/original.png?1744874152'; this.alt='Image load error'">
-          </div>
-          <h3>小型商家</h3>
-          <p>手作品牌、咖啡店、選物店、餐飲業者、社群電商...</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-             <img src="https://img.shoplineapp.com/media/image_clips/6800aaa82d09d3000bc88dfe/original.png?1744874152" alt="數據新手圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa82d09d3000bc88dfe/original.png?1744874152'; this.alt='Image load error'">
-          </div>
-          <h3>數據新手</h3>
-          <p>正在用 Google 表單、Excel 或筆記手動記帳</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-             <img src="https://img.shoplineapp.com/media/image_clips/6800aaa8a1e15d00114013c5/original.png?1744874152" alt="成長型企業圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa8a1e15d00114013c5/original.png?1744874152'; this.alt='Image load error'">
-          </div>
-          <h3>成長型企業</h3>
-          <p>想開始用數據經營，卻找不到門檻低又好用的工具</p>
-        </div>
+  <main id="main-content">
+    <header id="hero" class="hero">
+      <div class="hero-left">
+        <h1 class="brand"></h1>
       </div>
-    </div>
-  </section>
+      <div class="hero-right">
+        <h2 class="tagline">
+          <i>Smarter&nbsp;Data. Simpler&nbsp;Tools.</i>
+        </h2>
+        <p class="description">
+          一款專為微商與小型商家打造的智慧銷售系統，簡單、直覺、效率翻倍。
+        </p>
+        <a href="#demo" class="btn btn-hero cta-big">立即免費試用</a>
+      </div>
+    </header>
 
-  <section id="features">
+    <section id="pain-points" aria-labelledby="pain-points-title">
       <div class="container">
-          <div class="section-title">
-              <h2>我們的特色優勢</h2> </div>
-
-          <div class="feature-block">
-              <div class="feature-image">
-                  <img src="https://img.shoplineapp.com/media/image_clips/6802201d9f392f0010bf466d/original.png?1744969755" alt="視覺化報表截圖" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa9b2095d001011ff96/original.png?1744874152'; this.alt='Image load error'">
-              </div>
-              <div class="feature-content">
-                  <h3>親切好上手的介面設計</h3>
-                  <p>告別複雜表格！自動生成易懂的圖表，銷售趨勢、熱銷商品、顧客輪廓一目了然。</p>
-                  <ul>
-                      <li>不需要任何技術背景也能快速上手</li>
-                      <li>清楚的步驟與中文提示，像用 LINE 一樣簡單</li>
-                      <li>支援手機與平板，隨時掌握營運狀況</li>
-                  </ul>
-              </div>
+        <div class="section-title">
+          <h2 id="pain-points-title">解決電商經營者的三大困擾</h2>
+        </div>
+        <div class="pain-cards">
+          <div class="pain-item">
+            <div class="pain-box">
+              既有數據相關工具<br>過於繁瑣不易使用
+            </div>
+            <span class="pain-arrow" aria-hidden="true"></span>
+            <p class="pain-solution">
+              直覺介面<br><small>Simple&nbsp;UI</small>
+            </p>
           </div>
-
-          <div class="feature-block">
-               <div class="feature-image">
-                  <img src="https://img.shoplineapp.com/media/image_clips/6802201d1649e6000daeca9c/original.png?1744969755" alt="多平台整合示意圖" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa9bb40aa000e27d795/original.png?1744874152'; this.alt='Image load error'">
-              </div>
-              <div class="feature-content">
-                  <h3>整合多方平台，資訊同步</h3>
-                  <p>無論是線上電商、社群平台或線下門市，輕鬆匯入銷售資料，告別手動整理的耗時費力。</p>
-                   <ul>
-                      <li>支援蝦皮、MOMO、店商平台 訂單匯入 (依方案)</li>
-                      <li>簡易 POS 功能，快速記錄門市銷售</li>
-                      <li>自訂匯入格式，彈性對應你的需求</li>
-                  </ul>
-              </div>
+          <div class="pain-item">
+            <div class="pain-box">
+              相關專業能力不足<br>無法正確理解數據
+            </div>
+            <span class="pain-arrow" aria-hidden="true"></span>
+            <p class="pain-solution">
+              主動分析<br><small>Active&nbsp;Analysis</small>
+            </p>
           </div>
-
-          <div class="feature-block">
-              <div class="feature-image">
-                  <img src="https://img.shoplineapp.com/media/image_clips/680751b3fc58ec000e899c95/original.png?1745310129" alt="AI建議功能示意圖" onerror="this.src='https://placehold.co/500x350/cccccc/ffffff?text=Error'; this.alt='Image load error'">
-              </div>
-              <div class="feature-content">
-                  <h3>AI 數據分析與經營建議</h3>
-                  <p>不僅呈現數據，更提供行動建議。讓 AI 幫你找出潛力商品、預測銷售趨勢、提醒庫存水位。</p>
-                   <ul>
-                      <li>即時生成每日、每週、每月報表與圖表</li>
-                      <li>自動偵測銷售異常，主動提醒</li>
-                      <li>提供商品建議、促銷時機與顧客回購分析</li>
-                  </ul>
-              </div>
+          <div class="pain-item bear-wrapper">
+            <div class="pain-box">
+              精力與時間不足<br>難以有效運用數據
+            </div>
+            <img class="pain-bear"
+                 src="https://img.shoplineapp.com/media/image_clips/682eee6b5cfb5000106d463a/original.png?1747906155"
+                 alt="焦慮小熊"
+                 width="120"
+                 height="120"
+                 loading="lazy">
+            <span class="pain-arrow" aria-hidden="true"></span>
+            <p class="pain-solution">
+              AI 整合<br><small>AI&nbsp;Integration</small>
+            </p>
           </div>
-
-          <div class="feature-button-container">
-              <a href="#demo" class="btn btn-primary">立即免費試用</a>
-          </div>
-
+        </div>
       </div>
-  </section>
+    </section>
 
-  <section id="testimonials">
-    <div class="container">
-      <div class="section-title">
-        <h2>DataCrepe的使用情境</h2> </div>
-      <div class="testimonial-outer-container">
+    <section id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="features-title">DataCrepe 功能介紹</h2>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-image">
+            <img src="https://img.shoplineapp.com/media/image_clips/682ff5258984f10011c8bfb6/original.png?1747973412" 
+                 alt="視覺化報表截圖"
+                 width="700"
+                 height="400"
+                 loading="lazy">
+          </div>
+          <div class="feature-content">
+            <h2>1. 直覺介面</h2>
+            <h3>親切好上手的介面設計</h3>
+            <p>告別複雜表格！自動生成易懂的圖表，銷售趨勢、熱銷商品、顧客輪廓一目了然。</p>
+            <ul>
+              <li>不需要任何技術背景也能快速上手</li>
+              <li>清楚的步驟與中文提示，像用 LINE 一樣簡單</li>
+              <li>支援手機與平板，隨時掌握營運狀況</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block active-analysis">
+          <div class="feature-image active-analysis">
+            <img src="https://img.shoplineapp.com/media/image_clips/682eecb0e29f77000d77d0d4/original.png?1747905711" 
+                 alt="多平台整合示意圖"
+                 width="700"
+                 height="400"
+                 loading="lazy">
+          </div>
+          <div class="feature-content active-analysis">
+            <h2>2. 主動分析</h2>
+            <h3>數據分析與經營建議</h3>
+            <p>不僅呈現數據，更提供行動建議。讓 AI 幫您找出潛力商品、預測銷售趨勢、提醒庫存水位。</p>
+            <ul>
+              <li>即時生成每日、每週、每月報表與圖表</li>
+              <li>自動偵測銷售異常，主動提醒</li>
+              <li>提供商品建議、促銷時機與顧客回購分析</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-image">
+            <img src="https://img.shoplineapp.com/media/image_clips/682ff7e5d3666c000e85ddf9/original.png?1747974115" 
+                 alt="AI建議功能示意圖"
+                 width="700"
+                 height="400"
+                 loading="lazy">
+          </div>
+          <div class="feature-content">
+            <h2>3. AI 整合</h2>
+            <h3>Crispy AI 小助手</h3>
+            <p>AI驅動的聊天機器人Crispy熊，提供各種協助讓您事半功倍！</p>
+            <ul>
+              <li>直覺好用的文字聊天界面，大幅提高您的工作效率</li>
+              <li>跳過各種界面與數據解讀，直接與您的數據互動</li>
+              <li>提供您經營策略上的輔助建議</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-button-container">
+          <a href="#demo" class="btn btn-primary">立即免費試用</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="for-whom" aria-labelledby="for-whom-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="for-whom-title">我們的系統適合...</h2>
+        </div>
+        <div class="card-container">
+          <article class="card">
+            <div class="card-icon">
+              <img src="https://img.shoplineapp.com/media/image_clips/6800aaa885a909000c31b937/original.png?1744874152" 
+                   alt="小型商家圖示"
+                   width="80"
+                   height="80"
+                   loading="lazy">
+            </div>
+            <h3>小型商家</h3>
+            <p>手作品牌、咖啡店、選物店、餐飲業者、社群電商...</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">
+              <img src="https://img.shoplineapp.com/media/image_clips/6800aaa82d09d3000bc88dfe/original.png?1744874152" 
+                   alt="數據新手圖示"
+                   width="80"
+                   height="80"
+                   loading="lazy">
+            </div>
+            <h3>數據新手</h3>
+            <p>正在用 Google 表單、Excel 或筆記手動記帳</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">
+              <img src="https://img.shoplineapp.com/media/image_clips/6800aaa8a1e15d00114013c5/original.png?1744874152" 
+                   alt="成長型企業圖示"
+                   width="80"
+                   height="80"
+                   loading="lazy">
+            </div>
+            <h3>成長型企業</h3>
+            <p>想開始用數據經營，卻找不到門檻低又好用的工具</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pos-system" aria-labelledby="pos-system-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="pos-system-title">與 DataCrepe 高度整合的 POS 系統</h2>
+        </div>
+        <div class="pos-wrapper">
+          <figure class="pos-shot">
+            <img src="https://img.shoplineapp.com/media/image_clips/6833e7d080c7d1000d943761/original.png?1748232143" 
+                 alt="POS Dashboard"
+                 loading="lazy">
+            <figcaption>▲ 簡單明瞭的主界面</figcaption>
+          </figure>
+          <figure class="pos-shot" style="padding-top: 6rem;">
+            <figcaption>▼ 容易操作的訂單系統</figcaption>
+            <img src="https://img.shoplineapp.com/media/image_clips/6833e7d069f82f001190a1a9/original.png?1748232143" 
+                 alt="Quick Sales Screen"
+                 loading="lazy">
+          </figure>
+          <div class="pos-bear-wrap">
+            <img class="pos-bear"
+                 src="https://img.shoplineapp.com/media/image_clips/6833e64d65989d000b8105a1/original.png?1748231756"
+                 alt="可加購！小熊"
+                 width="270"
+                 height="170"
+                 loading="lazy">
+          </div>
+        </div>
+        <div class="pos-cta">
+          <a href="#demo" class="btn btn-primary">了解更多</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="pricing-title">價格方案</h2>
+        </div>
+        <div class="pricing-table">
+          <article class="pricing-plan">
+            <div class="pricing-body">
+              <h4>免費版</h4>
+              <p class="plan-subtitle">新手試用，輕鬆分析營運狀況</p>
+              <div class="price">
+                <span class="currency">NT</span>$0<span>/月</span>
+              </div>
+              <ul class="pricing-features">
+                <li>銷售紀錄整合</li>
+                <li>數據分析報表</li>
+                <li>每日報表</li>
+              </ul>
+              <hr class="pricing-divider">
+              <p class="addon-label">加購零售 POS 系統</p>
+              <p class="addon-price new-price" style="padding-top: 2.4rem;">
+                <span class="currency">NT</span>$490<span>/月</span>
+              </p>
+            </div>
+            <div class="pricing-footer">
+              <a href="#demo" class="btn btn-secondary">免費試用</a>
+            </div>
+          </article>
+
+          <article class="pricing-plan popular-plan">
+            <div class="pricing-body">
+              <h4>基本版</h4>
+              <p class="plan-subtitle">線上＋線下，經營省時又省力</p>
+              <div class="price">
+                <span class="currency">NT</span>$590<span>/月</span>
+              </div>
+              <ul class="pricing-features">
+                <li>免費版所有功能</li>
+                <li>客製化版面</li>
+                <li>AI 數據異常提示</li>
+              </ul>
+              <hr class="pricing-divider">
+              <p class="addon-label">加購零售 POS 系統</p>
+              <p class="addon-price old-price">
+                <span class="currency">NT</span>$490<span>/月</span>
+              </p>
+              <p class="addon-price new-price">
+                <span class="currency">NT</span>$300<span>/月</span>
+              </p>
+            </div>
+            <div class="pricing-footer">
+              <a href="#demo" class="btn btn-primary">立即購買</a>
+            </div>
+          </article>
+
+          <article class="pricing-plan">
+            <div class="pricing-body">
+              <h4>專業版</h4>
+              <p class="plan-subtitle">平台整合，AI 顧問加速營收成長</p>
+              <div class="price">
+                <span class="currency">NT</span>$1490<span>/月</span>
+              </div>
+              <ul class="pricing-features">
+                <li>基本版所有功能</li>
+                <li>多平台自動整合</li>
+                <li>AI 銷售顧問</li>
+              </ul>
+              <hr class="pricing-divider">
+              <p class="addon-label">加購零售 POS 系統</p>
+              <p class="addon-price old-price">
+                <span class="currency">NT</span>$490<span>/月</span>
+              </p>
+              <p class="addon-price new-price">
+                <span class="currency">NT</span>$300<span>/月</span>
+              </p>
+            </div>
+            <div class="pricing-footer">
+              <a href="#demo" class="btn btn-secondary">線上預約</a>
+            </div>
+          </article>
+
+          <div class="pricing-illustration">
+            <img src="https://img.shoplineapp.com/media/image_clips/6800aaa8e0d9b3000e3b977e/original.png?1744874152" 
+                 alt="價格方案裝飾圖"
+                 width="100"
+                 height="100"
+                 loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="testimonials-title">DataCrepe 使用情境</h2>
+        </div>
+        <div class="testimonial-outer-container">
           <div class="testimonial-nav">
-             <button class="prev-btn" aria-label="Previous Testimonial">❮</button>
-             <button class="next-btn" aria-label="Next Testimonial">❯</button>
+            <button class="prev-btn" aria-label="上一個情境">❮</button>
+            <button class="next-btn" aria-label="下一個情境">❯</button>
           </div>
           <div class="testimonial-carousel-container">
-              <div class="testimonial-slides-wrapper">
-                  <div class="testimonial-card">
-                     <div class="card-icon"> <img src="https://img.shoplineapp.com/media/image_clips/6800aaa987cf20001077aa11/original.png?1744874152" alt="咖啡店圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa987cf20001077aa11/original.png?1744874152'; this.alt='Image load error'">
-                     </div>
-                    <h3>咖啡店銷售分析</h3>
-                    <p class="testimonial-quote">咖啡店利用系統分析每週最佳促銷時段，調整人力配置與庫存管理</p>
-                  </div>
-                  <div class="testimonial-card">
-                     <div class="card-icon">
-                         <img src="https://img.shoplineapp.com/media/image_clips/6800aaa80d91c1000d0b6e31/original.png?1744874152" alt="小吃店圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa80d91c1000d0b6e31/original.png?1744874152'; this.alt='Image load error'">
-                     </div>
-                    <h3>小吃店經營分析</h3>
-                    <p class="testimonial-quote">小吃店老闆每日用手機看當日銷售報表，掌握最佳銷售時段與熱門餐點</p>
-
-                  </div>
-                  <div class="testimonial-card">
-                     <div class="card-icon">
-                         <img src="https://img.shoplineapp.com/media/image_clips/6800aaa96323a80011ff0a1d/original.png?1744874152" alt="美甲師圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa96323a80011ff0a1d/original.png?174487415'; this.alt='Image load error'">
-                     </div>
-                    <h3>美甲師客戶管理</h3>
-                    <p class="testimonial-quote">美甲師記錄每位顧客消費偏好與週期，掌握回購機會並提升客戶忠誠度</p>
-                  </div>
-                  <div class="testimonial-card">
-                     <div class="card-icon">
-                         <img src="https://img.shoplineapp.com/media/image_clips/6800aaa99a15ad000b7fd6c7/original.png?1744874152" alt="手作品牌圖示" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa99a15ad000b7fd6c7/original.png?1744874152'; this.alt='Image load error'">
-                     </div>
-                    <h3>手作品牌庫存優化</h3>
-                    <p class="testimonial-quote">手作品牌老闆用 AI 建議調整定價與熱銷商品排序，優化產品線與利潤</p>
-                  </div>
-              </div> </div> </div>
-
-    </div>
-  </section>
-
-  <section id="pricing">
-    <div class="container">
-      <div class="section-title">
-        <h2>價格方案</h2> </div>
-      <div class="pricing-table">
-        <div class="pricing-plan">
-          <div class="pricing-body">
-            <h4>免費版</h4>
-            <p class="plan-subtitle">新手試用，輕鬆分析營運狀況</p>
-            <div class="price">NT$0<span>/月</span></div>
-            <ul class="pricing-features">
-              <li>銷售紀錄整合</li>
-              <li>數據分析報表</li>
-              <li>每日報表</li>
-              <li>簡易 POS 系統</li>
-            </ul>
+            <div class="testimonial-slides-wrapper">
+              <div class="testimonial-card">
+                <div class="card-icon">
+                  <img src="https://img.shoplineapp.com/media/image_clips/6800aaa987cf20001077aa11/original.png?1744874152" 
+                       alt="咖啡店圖示"
+                       width="120"
+                       height="160"
+                       loading="lazy">
+                </div>
+                <h3>咖啡店銷售分析</h3>
+                <p class="testimonial-quote">咖啡店利用系統分析每週最佳促銷時段，調整人力配置與庫存管理</p>
+                <p class="testimonial-author">— 台北咖啡店</p>
+              </div>
+              <div class="testimonial-card">
+                <div class="card-icon">
+                  <img src="https://img.shoplineapp.com/media/image_clips/6800aaa80d91c1000d0b6e31/original.png?1744874152" 
+                       alt="小吃店圖示"
+                       width="120"
+                       height="160"
+                       loading="lazy">
+                </div>
+                <h3>小吃店經營分析</h3>
+                <p class="testimonial-quote">小吃店老闆每日用手機看當日銷售報表，掌握最佳銷售時段與熱門餐點</p>
+                <p class="testimonial-author">— 台中小吃店</p>
+              </div>
+              <div class="testimonial-card">
+                <div class="card-icon">
+                  <img src="https://img.shoplineapp.com/media/image_clips/6800aaa96323a80011ff0a1d/original.png?1744874152" 
+                       alt="美甲師圖示"
+                       width="120"
+                       height="160"
+                       loading="lazy">
+                </div>
+                <h3>美甲師客戶管理</h3>
+                <p class="testimonial-quote">美甲師記錄每位顧客消費偏好與週期，掌握回購機會並提升客戶忠誠度</p>
+                <p class="testimonial-author">— 高雄美甲師</p>
+              </div>
+              <div class="testimonial-card">
+                <div class="card-icon">
+                  <img src="https://img.shoplineapp.com/media/image_clips/6800aaa99a15ad000b7fd6c7/original.png?1744874152" 
+                       alt="手作品牌圖示"
+                       width="120"
+                       height="160"
+                       loading="lazy">
+                </div>
+                <h3>手作品牌庫存優化</h3>
+                <p class="testimonial-quote">手作品牌老闆用 AI 建議調整定價與熱銷商品排序，優化產品線與利潤</p>
+                <p class="testimonial-author">— 台南手作品牌</p>
+              </div>
+            </div>
           </div>
-          <div class="pricing-footer">
-            <a href="#demo" class="btn btn-secondary">免費試用</a>
-          </div>
-        </div>
-        <div class="pricing-plan popular-plan">
-          <div class="pricing-body">
-            <h4>基本版+</h4>
-            <p class="plan-subtitle">線上+線下，業績成長最佳選擇</p>
-            <div class="price">NT$299<span>/月</span></div>
-            <ul class="pricing-features">
-              <li>免費版所有功能</li>
-              <li>完整 POS 系統</li>
-              <li>客製化版面</li>
-              <li>AI 數據異常提示</li>
-            </ul>
-          </div>
-          <div class="pricing-footer">
-            <a href="#demo" class="btn btn-primary">立即升級</a>
-          </div>
-        </div>
-        <div class="pricing-plan">
-          <div class="pricing-body">
-            <h4>專業版</h4>
-             <p class="plan-subtitle">多平台整合，AI 顧問加速決策</p>
-            <div class="price">NT$599<span>/月</span></div>
-            <ul class="pricing-features">
-              <li>基本版所有功能</li>
-              <li>多平台整合</li>
-              <li>AI 銷售顧問</li>
-              <li>AI 銷售顧問</li>
-              <li>AI 銷售顧問</li>
-            </ul>
-          </div>
-          <div class="pricing-footer">
-            <a href="#demo" class="btn btn-secondary">線上預約</a>
-          </div>
-        </div>
-        <div class="pricing-illustration">
-            <img src="https://img.shoplineapp.com/media/image_clips/6800aaa8e0d9b3000e3b977e/original.png?1744874152" alt="價格方案裝飾圖" onerror="this.src='https://img.shoplineapp.com/media/image_clips/6800aaa8e0d9b3000e3b977e/original.png?1744874152'; this.alt='Image load error'">
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="faq">
-    <div class="container">
-      <div class="section-title">
-        <h2>常見問題</h2> </div>
-      <div class="faq-container">
-        <div class="faq-item">
-          <button class="faq-question">Q：我完全不懂數據，也能用嗎？</button>
-          <div class="faq-answer">
-            <p>A：絕對可以！我們的設計理念就是簡單直覺，搭配教學文件與客服支援，保證您能輕鬆上手，體驗數據帶來的價值。</p>
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="faq-title">常見問題</h2>
+        </div>
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Q：我完全不懂數據，也能用嗎？</button>
+            <div class="faq-answer">
+              <p>A：絕對可以！我們的設計理念就是簡單直覺，搭配教學文件與客服支援，保證您能輕鬆上手，體驗數據帶來的價值。</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Q：支援哪些電商或社群平台？</button>
+            <div class="faq-answer">
+              <p>A：專業版支援整合多平台。您可以隨時與我們確認您使用的平台是否支援。</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Q：我的資料安全嗎？</button>
+            <div class="faq-answer">
+              <p>A：我們非常重視資料安全。系統採用銀行等級加密技術，並儲存於高規格雲端主機，符合國際資安標準與台灣法規。</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Q：免費試用期有多長？需要綁信用卡嗎？</button>
+            <div class="faq-answer">
+              <p>A：免費版提供持續免費使用。基本版提供 30 天免費試用，無需提供信用卡資訊，試用期滿再決定是否付費。</p>
+            </div>
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-question">Q：支援哪些電商或社群平台？</button>
-          <div class="faq-answer">
-             <p>A：專業版支援整合多平台。您可以隨時與我們確認您使用的平台是否支援。</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Q：我的資料安全嗎？</button>
-          <div class="faq-answer">
-            <p>A：我們非常重視資料安全。系統採用銀行等級加密技術，並儲存於高規格雲端主機，符合國際資安標準與台灣法規。</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Q：免費試用期有多長？需要綁信用卡嗎？</button>
-          <div class="faq-answer">
-            <p>A：免費版提供持續免費使用。基本版提供 30 天免費試用，無需提供信用卡資訊，試用期滿再決定是否付費。</p>
-          </div>
-        </div>
-        <!-- <div class="faq-item">
-          <button class="faq-question">Q：如何取消訂閱或變更方案？</button>
-          <div class="faq-answer">
-            <p>A：您可以隨時在系統後台輕鬆變更方案或取消訂閱，操作簡單。變更方案通常會依比例計算費用。</p>
-          </div>
-        </div> -->
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer id="cta">
     <div class="container">
-      <h2>準備好讓數據成為你的超能力了嗎？</h2>
+      <h2>準備好讓數據成為您的超能力了嗎？</h2>
       <div class="footer-buttons">
         <a href="#demo" class="btn btn-primary">立即免費試用</a>
         <a href="#demo" class="btn btn-secondary">預約專人 Demo</a>
@@ -1322,361 +1877,474 @@
     </div>
   </footer>
 
-  <!-- The Modal/Popup -->
-  <div id="demoRequestModal" class="modal">
+  <!-- Demo Request Modal -->
+  <div id="demoRequestModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 class="form-title">預約試用</h2>
-      <form id="demoRequestForm">
+      <span class="close" aria-label="關閉對話框">&times;</span>
+      <h2 id="modal-title" class="form-title">預約試用</h2>
+      <form id="demoRequestForm" novalidate>
         <div class="form-group">
           <label for="name" class="required">姓名</label>
-          <input type="text" id="name" name="name" required>
+          <input type="text" id="name" name="name" required autocomplete="name">
         </div>
-        
         <div class="form-group">
           <label for="company" class="required">公司或個人</label>
-          <input type="text" id="company" name="company" required>
+          <input type="text" id="company" name="company" required autocomplete="organization">
         </div>
-        
         <div class="form-group">
           <label for="email" class="required">電子郵件</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" required autocomplete="email">
         </div>
-        
         <div class="form-group">
           <label for="phone" class="required">電話</label>
-          <input type="tel" id="phone" name="phone" required>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel">
         </div>
-        
         <div class="form-group">
           <label for="industry" class="required">產業</label>
           <input type="text" id="industry" name="industry" required>
         </div>
-        
         <div class="form-group">
           <label for="jobTitle" class="required">職稱</label>
-          <input type="text" id="jobTitle" name="jobTitle" required>
+          <input type="text" id="jobTitle" name="jobTitle" required autocomplete="organization-title">
         </div>
-        
         <button type="submit" class="submit-btn">送出申請</button>
       </form>
     </div>
   </div>
 
   <script>
-    // --- Mobile menu toggle ---
+    // Performance optimization: Use passive event listeners where possible
+    const passiveSupported = (() => {
+      let passiveSupported = false;
+      try {
+        const options = Object.defineProperty({}, 'passive', {
+          get: function() { passiveSupported = true; }
+        });
+        window.addEventListener('test', null, options);
+        window.removeEventListener('test', null, options);
+      } catch(err) {}
+      return passiveSupported;
+    })();
+
+    // Mobile menu toggle with improved accessibility
     const mobileMenuButton = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuButton && navLinks) {
-        mobileMenuButton.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-        });
+      mobileMenuButton.addEventListener('click', function() {
+        const isExpanded = navLinks.classList.contains('active');
+        navLinks.classList.toggle('active');
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!mobileMenuButton.contains(e.target) && !navLinks.contains(e.target)) {
+          navLinks.classList.remove('active');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
 
-    // --- Smooth scrolling for anchor links ---
+    // Optimized smooth scrolling with throttling
+    let isScrolling = false;
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
+        if (isScrolling) return;
+        
         const targetId = this.getAttribute('href');
 
         // Special handling for placeholder links
         if (targetId === '#demo' || targetId === '#login') {
-             e.preventDefault();
-             if (targetId === '#demo') {
-                 // Open demo request modal
-                 document.getElementById('demoRequestModal').style.display = 'block';
-             } else if (targetId === '#login') {
-                  Swal.fire({
-                      title: 'Crispy says',
-                      text: '登入功能暫未開放！',
-                      imageUrl: 'https://img.shoplineapp.com/media/image_clips/68021a6ec9d2cb000d08686a/original.png?1744968302',
-                      imageWidth: 80,
-                      imageHeight: 80,
-                      imageAlt: 'Crispy mascot',
-                      confirmButtonText: 'OK',
-                      confirmButtonColor: '#F4A259',
-                      customClass: {
-                       image: 'swal-image-close-to-title'
-                      }
-                  });
-             }
-             return;
+          e.preventDefault();
+          if (targetId === '#demo') {
+            openModal();
+          } else if (targetId === '#login') {
+            showLoginAlert();
+          }
+          return;
         }
 
-        if (targetId === '#') {
-             return;
-        }
+        if (targetId === '#') return;
 
         const targetElement = document.querySelector(targetId);
-
         if (targetElement) {
-            e.preventDefault();
+          e.preventDefault();
+          isScrolling = true;
 
-            if (navLinks && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
+          // Close mobile menu if open
+          if (navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            if (mobileMenuButton) {
+              mobileMenuButton.setAttribute('aria-expanded', 'false');
             }
+          }
 
-            const navHeight = document.querySelector('nav')?.offsetHeight || 70;
-            const offsetTop = targetElement.offsetTop - navHeight - 20;
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            });
-        } else {
-            console.warn(`Smooth scroll target not found for href: ${targetId}`);
+          const navHeight = document.querySelector('nav')?.offsetHeight || 70;
+          const offsetTop = targetElement.offsetTop - navHeight - 20;
+          
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+
+          // Reset scrolling flag after scroll completes
+          setTimeout(() => { isScrolling = false; }, 1000);
         }
       });
     });
 
-    // --- Demo Request Modal Logic ---
+    // Modal functionality with improved accessibility
     const modal = document.getElementById("demoRequestModal");
-    const closeBtn = modal.querySelector(".close");
+    const closeBtn = modal?.querySelector(".close");
     const demoForm = document.getElementById("demoRequestForm");
-    
-    // When the user clicks on <span> (x), close the modal
-    closeBtn.onclick = function() {
-      modal.style.display = "none";
+    let previousFocus = null;
+
+    function openModal() {
+      if (!modal) return;
+      previousFocus = document.activeElement;
+      modal.style.display = "block";
+      modal.setAttribute('aria-hidden', 'false');
+      // Add transition class after display is set
+      requestAnimationFrame(() => {
+        modal.classList.add('show');
+      });
+      // Focus on first input
+      const firstInput = modal.querySelector('input');
+      if (firstInput) firstInput.focus();
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
     }
-    
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('show');
+      setTimeout(() => {
         modal.style.display = "none";
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (previousFocus) previousFocus.focus();
+      }, 300);
+    }
+
+    function showLoginAlert() {
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: 'Crispy says',
+          text: '登入功能暫未開放！',
+          imageUrl: 'https://img.shoplineapp.com/media/image_clips/68021a6ec9d2cb000d08686a/original.png?1744968302',
+          imageWidth: 80,
+          imageHeight: 80,
+          imageAlt: 'Crispy mascot',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#F9A250',
+          customClass: {
+            image: 'swal-image-close-to-title'
+          }
+        });
+      } else {
+        alert('登入功能暫未開放！');
       }
     }
-    
-    // Handle form submission
-    demoForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById("name").value;
-      const company = document.getElementById("company").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      const industry = document.getElementById("industry").value;
-      const jobTitle = document.getElementById("jobTitle").value;
-      
-      // Create email body with form data
-      const emailBody = `
-        預約試用
 
-        姓名: ${name}
-        公司或個人: ${company}
-        聯絡資訊: 
-        - 電子郵件: ${email}
-        - 電話: ${phone}
-        產業: ${industry}
-        職稱: ${jobTitle}
-      `;
-      
-      // Create mailto link with the requested subject format
-        const mailtoLink = `mailto:datacrepe.info@gmail.com?subject=${encodeURIComponent(`${company} ${name} 預約試用 DataCrepe`)}&body=${encodeURIComponent(emailBody)}`;
-      
-      // Open the user's email client
-      window.location.href = mailtoLink;
-      
-      // Close the modal
-      modal.style.display = "none";
-      
-      // Reset form fields
-      demoForm.reset();
+    // Event listeners for modal
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+        closeModal();
+      }
     });
 
-    // --- Testimonial Carousel Logic (Show 3 Slides) ---
+    // Close modal when clicking outside
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    // Enhanced form submission with validation
+    if (demoForm) {
+      demoForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        // Basic form validation
+        const formData = new FormData(demoForm);
+        const data = Object.fromEntries(formData);
+        
+        // Check required fields
+        const requiredFields = ['name', 'company', 'email', 'phone', 'industry', 'jobTitle'];
+        const missingFields = requiredFields.filter(field => !data[field]?.trim());
+        
+        if (missingFields.length > 0) {
+          alert('請填寫所有必填欄位');
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+          alert('請輸入有效的電子郵件地址');
+          return;
+        }
+        
+        // Create email body
+        const emailBody = `預約試用申請
+
+姓名: ${data.name}
+公司或個人: ${data.company}
+聯絡資訊: 
+- 電子郵件: ${data.email}
+- 電話: ${data.phone}
+產業: ${data.industry}
+職稱: ${data.jobTitle}`;
+        
+        // Create mailto link
+        const subject = `${data.company} ${data.name} 預約試用 DataCrepe`;
+        const mailtoLink = `mailto:datacrepe.info@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Close modal and reset form
+        closeModal();
+        demoForm.reset();
+      });
+    }
+
+    // Optimized testimonial carousel with better performance
     const slidesWrapper = document.querySelector('.testimonial-slides-wrapper');
     const prevButton = document.querySelector('.prev-btn');
     const nextButton = document.querySelector('.next-btn');
-    let currentTestimonialIndex; // Will be set after cloning
-    let testimonialSlides = []; // Original slides
-    let allSlides = []; // All slides including clones
-    let totalSlides = 0;
-    let visibleSlides = 3; // Default
-    let slideWidth = 0;
-    let gap = 32; // Default 2rem gap
-    let isTransitioning = false;
-    const transitionDuration = 500; // ms, match CSS transition if any
+    
+    if (slidesWrapper && prevButton && nextButton) {
+      let currentTestimonialIndex = 0;
+      let testimonialSlides = [];
+      let allSlides = [];
+      let totalSlides = 0;
+      let visibleSlides = 3;
+      let slideWidth = 0;
+      let gap = 32;
+      let isTransitioning = false;
+      const transitionDuration = 500;
 
-    function updateGapValue() {
-        if (!slidesWrapper) return;
+      function updateGapValue() {
         const computedStyle = window.getComputedStyle(slidesWrapper);
-        gap = parseFloat(computedStyle.gap) || 0; // Default to 0 if gap is not set or computable
-    }
+        gap = parseFloat(computedStyle.gap) || 32;
+      }
 
-    function initializeCarousel() {
-        if (!slidesWrapper) return;
-        testimonialSlides = Array.from(slidesWrapper.querySelectorAll('.testimonial-card'));
-        totalSlides = testimonialSlides.length;
-
-        calculateVisibleSlides();
-        updateGapValue(); // Update gap based on current visible slides
-
-        if (totalSlides <= visibleSlides) { // Hide nav if not enough slides for scrolling
-            const testimonialNav = document.querySelector('.testimonial-nav');
-            if(testimonialNav) testimonialNav.style.display = 'none';
-            return; // No need for slide logic
-        }
-        
-        setupInfiniteScroll();
-        calculateSlideWidth(); // Calculate width based on all slides
-        updateCarousel(false); // Initial position without animation
-    }
-
-    function calculateVisibleSlides() {
+      function calculateVisibleSlides() {
         if (window.innerWidth > 991) {
-            visibleSlides = 3;
+          visibleSlides = 3;
         } else if (window.innerWidth > 768) {
-            visibleSlides = 2;
+          visibleSlides = 2;
         } else {
-            visibleSlides = 1;
+          visibleSlides = 1;
         }
-    }
+      }
 
-    function setupInfiniteScroll() {
-        // Clear existing clones if any (for resize)
+      function setupInfiniteScroll() {
+        // Clear and rebuild slides
         slidesWrapper.innerHTML = '';
-        testimonialSlides.forEach(slide => slidesWrapper.appendChild(slide)); // Add originals back
+        testimonialSlides.forEach(slide => slidesWrapper.appendChild(slide.cloneNode(true)));
         
-        // Gap is updated in initializeCarousel and handleResize
-
-        // Clone first 'visibleSlides' slides and append them
+        // Clone slides for infinite scroll
         for (let i = 0; i < visibleSlides; i++) {
-            const clone = testimonialSlides[i].cloneNode(true);
-            slidesWrapper.appendChild(clone);
+          const clone = testimonialSlides[i].cloneNode(true);
+          slidesWrapper.appendChild(clone);
         }
 
-        // Clone last 'visibleSlides' slides and prepend them
         for (let i = totalSlides - visibleSlides; i < totalSlides; i++) {
-            const clone = testimonialSlides[i].cloneNode(true);
-            slidesWrapper.insertBefore(clone, slidesWrapper.firstChild);
+          const clone = testimonialSlides[i].cloneNode(true);
+          slidesWrapper.insertBefore(clone, slidesWrapper.firstChild);
         }
         
-        // Update the list of all slides including clones
         allSlides = slidesWrapper.querySelectorAll('.testimonial-card');
-        
-        // Set initial index to show the first original slide
-        currentTestimonialIndex = visibleSlides; 
-    }
+        currentTestimonialIndex = visibleSlides;
+      }
 
-    function calculateSlideWidth() {
-        if (totalSlides > 0 && allSlides.length > 0 && slidesWrapper.parentElement) {
-            const containerWidth = slidesWrapper.parentElement.offsetWidth;
-            if (visibleSlides === 3) { // Show 3
-                slideWidth = (containerWidth - 2 * gap) / 3;
-            } else if (visibleSlides === 2) { // Show 2
-                slideWidth = (containerWidth - gap) / 2;
-            } else { // Show 1
-                slideWidth = containerWidth; // Use the exact container width for a single slide
-            }
-            // Apply the calculated width to all slides (originals and clones)
-            allSlides.forEach(slide => {
-                 slide.style.minWidth = `${slideWidth}px`; // Use precise pixel width
-            });
+      function calculateSlideWidth() {
+        if (totalSlides > 0 && slidesWrapper.parentElement) {
+          const containerWidth = slidesWrapper.parentElement.offsetWidth;
+          if (visibleSlides === 3) {
+            slideWidth = (containerWidth - 2 * gap) / 3;
+          } else if (visibleSlides === 2) {
+            slideWidth = (containerWidth - gap) / 2;
+          } else {
+            slideWidth = containerWidth;
+          }
+          
+          allSlides.forEach(slide => {
+            slide.style.minWidth = `${slideWidth}px`;
+          });
         }
-    }
+      }
 
-    function updateCarousel(animate = true) {
-        if (!slidesWrapper) return;
-        
-        // Calculate the correct translation amount including gaps
-        // We need to account for the prepended clones in the calculation
+      function updateCarousel(animate = true) {
         const translateAmount = currentTestimonialIndex * (slideWidth + gap);
-        
         slidesWrapper.style.transition = animate ? `transform ${transitionDuration / 1000}s ease-in-out` : 'none';
         slidesWrapper.style.transform = `translateX(-${translateAmount}px)`;
-    }
+      }
 
-    function nextSlide() {
+      function nextSlide() {
         if (isTransitioning) return;
         isTransitioning = true;
         
         currentTestimonialIndex++;
         updateCarousel(true);
         
-        // Use setTimeout to handle the jump after transition completes
         setTimeout(() => {
-            // Check if we've moved past the last original slide into the end clones
-            if (currentTestimonialIndex >= totalSlides + visibleSlides) {
-                currentTestimonialIndex = visibleSlides; // Jump back to the first original slide
-                updateCarousel(false); // Update instantly without animation
-            }
-            isTransitioning = false;
+          if (currentTestimonialIndex >= totalSlides + visibleSlides) {
+            currentTestimonialIndex = visibleSlides;
+            updateCarousel(false);
+          }
+          isTransitioning = false;
         }, transitionDuration);
-    }
+      }
 
-    function prevSlide() {
+      function prevSlide() {
         if (isTransitioning) return;
         isTransitioning = true;
         
         currentTestimonialIndex--;
         updateCarousel(true);
         
-        // Use setTimeout to handle the jump after transition completes
         setTimeout(() => {
-            // Check if we've moved past the first original slide into the start clones
-            if (currentTestimonialIndex < visibleSlides) {
-                // Jump to the corresponding last original slide (before the end clones)
-                currentTestimonialIndex = totalSlides + visibleSlides - 1;
-                updateCarousel(false); // Update instantly without animation
-            }
-            isTransitioning = false;
+          if (currentTestimonialIndex < visibleSlides) {
+            currentTestimonialIndex = totalSlides + visibleSlides - 1;
+            updateCarousel(false);
+          }
+          isTransitioning = false;
         }, transitionDuration);
-    }
+      }
 
-    function handleResize() {
-        // Temporarily remove transition to avoid visual glitches during resize
-        if (!slidesWrapper) return;
-        slidesWrapper.style.transition = 'none';
+      function initializeCarousel() {
+        testimonialSlides = Array.from(document.querySelectorAll('.testimonial-card'));
+        totalSlides = testimonialSlides.length;
 
         calculateVisibleSlides();
-        updateGapValue(); // Update gap based on new visible slides count
-        // Re-setup clones based on new visible count
+        updateGapValue();
+
+        if (totalSlides <= visibleSlides) {
+          const nav = document.querySelector('.testimonial-nav');
+          if (nav) nav.style.display = 'none';
+          return;
+        }
+        
         setupInfiniteScroll();
         calculateSlideWidth();
-        // Reset position to the start of original slides without animation
-        updateCarousel(false); 
+        updateCarousel(false);
+      }
+
+      function handleResize() {
+        slidesWrapper.style.transition = 'none';
+        calculateVisibleSlides();
+        updateGapValue();
+        setupInfiniteScroll();
+        calculateSlideWidth();
+        updateCarousel(false);
+      }
+
+      // Initialize carousel
+      initializeCarousel();
+
+      // Event listeners
+      nextButton.addEventListener('click', nextSlide);
+      prevButton.addEventListener('click', prevSlide);
+
+      // Throttled resize handler
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(handleResize, 250);
+      }, passiveSupported ? { passive: true } : false);
     }
 
-    if (prevButton && nextButton && slidesWrapper) {
-        nextButton.addEventListener('click', nextSlide);
-        prevButton.addEventListener('click', prevSlide);
-
-        // Initialize
-        initializeCarousel();
-        
-        // Debounced resize handler
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(handleResize, 250);
-        });
-
-    } else {
-        const testimonialNav = document.querySelector('.testimonial-nav');
-        if(testimonialNav) testimonialNav.style.display = 'none';
-        console.warn("Testimonial carousel navigation or slides not found.");
-    }
-
-    // --- FAQ Accordion Logic ---
+    // Enhanced FAQ accordion with better accessibility
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
-        const questionButton = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
+      const questionButton = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
 
-        if (questionButton && answer) {
-            questionButton.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
+      if (questionButton && answer) {
+        // Set initial ARIA attributes
+        const isExpanded = item.classList.contains('active');
+        questionButton.setAttribute('aria-expanded', isExpanded);
+        answer.setAttribute('aria-hidden', !isExpanded);
 
-                // Optional: Close others
-                // faqItems.forEach(otherItem => {
-                //    if (otherItem !== item) otherItem.classList.remove('active');
-                // });
+        questionButton.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          
+          // Toggle current item
+          item.classList.toggle('active');
+          questionButton.setAttribute('aria-expanded', !isActive);
+          answer.setAttribute('aria-hidden', isActive);
+        });
 
-                item.classList.toggle('active');
-            });
-        }
+        // Keyboard navigation
+        questionButton.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            questionButton.click();
+          }
+        });
+      }
     });
 
+    // Intersection Observer for lazy loading improvements
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+            }
+            observer.unobserve(img);
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.1,
+        rootMargin: '50px'
+      });
+
+      // Observe images that aren't already loading
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (img.complete) return;
+        imageObserver.observe(img);
+      });
+    }
+
+    // Performance monitoring (optional)
+    if ('performance' in window && 'measure' in performance) {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          if (perfData) {
+            console.log(`Page load time: ${perfData.loadEventEnd - perfData.loadEventStart}ms`);
+          }
+        }, 0);
+      });
+    }
+
+    // Prevent FOUC and optimize critical rendering path
+    document.documentElement.classList.add('js-enabled');
   </script>
+
+  <!-- Critical CSS for above-the-fold content is inlined in <style> tag -->
+  <!-- Non-critical CSS can be loaded asynchronously if needed -->
+  
+  <!-- Performance optimization: Preload key images -->
+  <link rel="preload" as="image" href="https://img.shoplineapp.com/media/image_clips/6801ff78e0c1e3000fea1137/original.png?1744961399">
+  <link rel="preload" as="image" href="https://img.shoplineapp.com/media/image_clips/682d764d8f07f4000de208a3/original.png?1747809868">
 </body>
 </html>
