@@ -1459,7 +1459,7 @@
       <li><a href="#testimonials">使用情境</a></li>
       <li><a href="#faq">常見問題</a></li>
       <li><a href="#demo" class="btn btn-nav">預約試用</a></li>
-      <li><a href="#login" class="btn btn-nav">登入</a></li>
+      <li><a href="https://auth.datacrepe.net" class="btn btn-nav" target="_blank" rel="noopener">登入</a></li>
     </ul>
     <button class="mobile-menu" aria-label="開啟選單" aria-expanded="false">☰</button>
   </nav>
@@ -1956,13 +1956,9 @@
         const targetId = this.getAttribute('href');
 
         // Special handling for placeholder links
-        if (targetId === '#demo' || targetId === '#login') {
+        if (targetId === '#demo') {
           e.preventDefault();
-          if (targetId === '#demo') {
-            openModal();
-          } else if (targetId === '#login') {
-            showLoginAlert();
-          }
+          openModal();
           return;
         }
 
